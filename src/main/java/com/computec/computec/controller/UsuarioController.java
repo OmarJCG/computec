@@ -36,7 +36,7 @@ public class UsuarioController {
     @PostMapping("/save")
     public String save(Usuario usuario) {
 
-        //Logback-
+        //Logback
         LOGGER.info("Usuario del formulario registro: {}", usuario);
 
         usuarioService.registrarUsuario(usuario);
