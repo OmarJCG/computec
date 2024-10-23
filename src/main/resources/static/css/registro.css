@@ -1,0 +1,284 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+
+:root {
+    --first-color-alt: #6133eb;
+    --first-color-light: hsl(255, 40%, 80%);
+    --title-color: hsl(255, 24%, 16%);
+    --text-color: hsl(255, 8%, 45%);
+    --body-color: hsl(0, 0%, 100%);
+    --first-color-second: hsl(250, 69%, 61%);
+    --first-color-lighter: hsl(250, 92%, 85%);
+    --scroll-bar-color: hsl(250, 12%, 90%);
+    --scroll-thumb-color: hsl(245, 7%, 70%);
+    --first-color: hsl(255, 90%, 60%);
+    --title-color: hsl(255, 24%, 16%);
+    --text-color: hsl(250, 8%, 45%);
+    --body-color: rgb(251, 251, 254);
+
+    /* .5rem = 8px, 1rem = 16px, 1.5rem = 24px ... */
+    --h1-font-size: 1.5rem;
+    --h3-font-size: 1.125rem;
+    --normal-font-size: .938rem;
+
+    /*========== Font weight ==========*/
+    --font-medium: 500;
+    --font-semi-bold: 600;
+
+}
+
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    font-family: "Poppins", sans-serif;
+    font-size: var(--normal-font-size);
+    color: var(--text-color);
+}
+
+h1{
+    color: var(--title-color);
+    font-weight: var(--font-semi-bold);
+}
+
+ul {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+}
+
+img{
+    width: 100%;
+}
+
+/* ================LOGIN============= */
+
+.nav{
+    height: 5rem;
+    text-align: center;
+    padding-top: .5rem;
+}
+
+.nav__logo{
+    height: 100%;
+}
+
+.nav__logo a{
+    display: inline-block;
+    height: 100%;
+    border: 1px solid var(--first-color);
+    padding: .5rem;
+    border-radius: 50%;
+    box-shadow: 0 0 5px var(--first-color);
+}
+
+.nav__logo a img{
+    height: 100%;
+}
+
+.login{
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login__data{
+    width: 100%;
+    max-width: 1250px;
+    background-color: var(--body-color);
+    padding: .5rem 1rem  2rem;
+    border-radius: 2rem;
+    box-shadow: 0 0 5px var(--first-color);
+}
+
+
+.login__content{
+    width: 100%;
+    
+}
+
+.form__content{
+    padding-top: 1rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr auto;
+    column-gap: 2rem;
+    padding-inline: 1rem;
+}
+
+.form__title{
+    border-radius: 10px 10px 0 0;
+    text-align: center;
+    position: relative;
+    padding-bottom: .5rem;
+    margin-bottom: .5rem;
+}
+
+
+.form__title::before {
+    content: " ";
+    position: absolute;
+    width: 100px;
+    height: 3px;
+    background-color: var(--first-color);
+    border-radius: 10px;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+}
+
+.form__item-last{
+    grid-column: 1/-1;
+    text-align: center;
+}
+
+.form__div{
+    display: grid;
+    margin-bottom: 1rem;
+}
+
+
+.form__label{
+    margin-bottom: 0.5rem;
+    font-weight: var(--font-semi-bold);
+}
+
+.form__label i{
+    margin-right:.5rem ;
+}
+
+.form__input{
+    border:2px solid var(--text-color);
+    padding: .6rem;
+    outline: none;
+    color: var(--text-color);
+    border-radius: .5rem;
+    font-size: var(--normal-font-size);
+    
+}
+.form__div:has(> .form__input:focus) > .form__label{
+    color: var(--first-color);
+}
+.form__input:focus{
+    border: 2px solid var(--first-color);
+    color: var(--first-color);
+}
+
+.form__div-last{
+    margin-bottom: 1.5rem;
+}
+.from__registro{
+    padding-bottom: 1rem;
+}
+
+.from__registro-link{
+    color: var(--first-color);
+}
+
+.from__registro-link:hover{
+    color:var(--title-color);
+}
+
+/* ==========button */
+.form__button{
+    width: 40%;
+    padding: 1rem;
+    font-size: var(--normal-font-size);
+    border: none;
+    margin-bottom: 1rem;
+    background-color: var(--first-color);
+    color: #fff;
+    border-radius: .5rem;
+    cursor: pointer;
+    transition: .3s;
+    font-weight: var(--font-semi-bold);
+}
+.form__button:hover{
+    background-color: var(--title-color);
+}
+
+/*=== Form social===*/
+.form__social{
+    text-align: center;
+}
+
+.form__social-icon{
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    margin-right: 1rem;
+    padding: .5rem;
+    background-color: var(--title-color);
+    color: #fff;
+    font-size: 1.25rem;
+    border-radius: 50%;
+}
+.form__social-icon:hover{
+    background-color: var(--first-color);
+}
+
+/*
+================================================
+==================== footer ====================
+===============================================
+*/
+/*==================== footer ====================*/
+.footer {
+    background-color: var(--first-color-alt);
+    color: #fff;
+    text-align: center;
+    padding: 3rem 0;
+}
+
+
+.footer__links {
+    display: flex;
+    justify-content: center;
+    column-gap: 1.5rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 3px solid var(--body-color);
+}
+
+.footer__link {
+    color: #fff;
+    font-size: 1.7rem;
+
+}
+
+.footer__link:hover {
+    color: var(--first-color-light);
+}
+
+.footer__description {
+    padding-top: 2rem;
+}
+
+/*
+================================================
+==================== SCROLL ====================
+===============================================
+*/
+/*========== SCROLL BAR ==========*/
+::-webkit-scrollbar {
+    width: .8rem;
+    background-color: var(--scroll-bar-color);
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: var(--scroll-thumb-color);
+    border-radius: .4rem;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background-color: var(--text-color);
+}
+

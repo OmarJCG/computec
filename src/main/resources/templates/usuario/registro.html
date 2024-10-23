@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.2.0/remixicon.min.css" rel="stylesheet" />
+    <link rel="stylesheet" th:href="@{/css/registro.css}">
+    <link rel="shortcut icon" th:href="@{/assets/logo.svg}" type="image/x-icon">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <div class="nav container">
+        <div class="nav__logo">
+            <a th:href="@{/}"><img th:src="@{/assets/logo.svg}" alt=""></a>
+        </div>
+    </div>
+
+    <div class="login">
+        
+        <div class="login__data">
+            <div class="login__content">
+                <h1 class="form__title">Registrate</h1>
+
+
+                <form th:action="@{/usuario/save}" class="form__content" method="post">
+
+                    <div class="form__intem" >
+                        <div class="form__div">
+                            <label for="nombre" class="form__label"> <i class="ri-user-fill"></i>Nombres</label>
+                            <input id="nombre" type="text" class="form__input" name="nombre">
+                        </div>
+
+                        <div class="form__div ">
+                            <label for="apellido" class="form__label"> <i class="ri-user-fill"></i>Apellidos</label>
+                            <input id="apellido" type="text" class="form__input" name="apellido">
+                        </div>
+    
+                        <div class="form__div ">
+                            <label for="genero" class="form__label"><i class="ri-men-fill"></i></i>Genero</label>
+                            <select id="genero" name="genero" class="form__input">
+                                <option value="X" selected="selected">...</option>
+                                <option value="Masculino">Másculino</option>
+                                <option value="Femenino">Femenino</option>
+                                </select>
+                        </div>
+    
+                        <div class="form__div ">
+                            <label for="fechaNacimiento" class="form__label"><i class="ri-calendar-check-fill"></i>Fecha Nacimiento</label>
+                            <input id="fechaNacimiento" type="date" class="form__input" name="fechaNacimiento">
+                        </div>
+    
+                        
+                    </div>
+                    
+                    <div class="form__item">
+
+                        <div class="form__div ">
+                            <label for="departamento" class="form__label"><i class="ri-map-pin-fill"></i>Departamento</label>
+                            <input id="departamento" type="text" class="form__input" name="departamento">
+                        </div>
+    
+                        <div class="form__div ">
+                            <label for="provincia" class="form__label"><i class="ri-map-pin-2-fill"></i>Provincia</label>
+                            <input id="provincia" type="text" class="form__input" name="provincia">
+                        </div>
+    
+                        <div class="form__div ">
+                            <label for="distrito" class="form__label"><i class="ri-pin-distance-fill"></i>Distrito</label>
+                            <input id="distrito" type="text" class="form__input" name="distrito">
+                        </div>
+    
+                        <div class="form__div ">
+                            <label for="calle" class="form__label"><i class="ri-user-location-fill"></i>Calle</label>
+                            <input id="calle" type="text" class="form__input" name="calle">
+                        </div>
+
+                    </div>
+                    
+                    <div class="form__item">
+
+                        <div class="form__div ">
+                            <label for="numero" class="form__label"><i class="ri-phone-fill"></i>Celular</label>
+                            <input id="numero" type="number" class="form__input" name="numero">
+                        </div>
+
+                        <div class="form__div ">
+                            <label for="correo" class="form__label"><i class="ri-user-6-fill"></i>Correo</label>
+                            <input id="correo" type="email" class="form__input" name="correo">
+                        </div>
+    
+                        
+                        <div class="form__div ">
+                            <label for="password" class="form__label"><i class="ri-lock-fill"></i>Contraseña</label>
+                            <input type="password" id="password" class="form__input" name="password">
+                        </div>
+                    </div>
+                    
+
+                    <div class="form__item form__item-last">
+                        <div class="from__registro">
+                            <a th:href="@{/usuario/login}" class="from__registro-link">¿Ya tengo cuenta?</a>
+                        </div>
+                        
+                        <button type="submit" class="form__button">Registrar</button>
+                    </div>
+                    
+                </form>
+
+                <div class="form__social">
+                    <a href="#" class="form__social-icon"><i class="ri-facebook-line"></i></a>
+                    <a href="#" class="form__social-icon"><i class="ri-instagram-line"></i></a>
+                    <a href="#" class="form__social-icon"><i class="ri-twitter-x-line"></i></a>
+                    <a href="#" class="form__social-icon"><i class="ri-youtube-line"></i></a>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+
+    <div th:insert="~{usuario/template_usuario.html::footer}"></div>
+</body>
+</html>

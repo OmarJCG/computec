@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.2.0/remixicon.min.css" rel="stylesheet" />
+    <link rel="stylesheet" th:href="@{/css/show.css}">
+    <link rel="shortcut icon" th:href="@{/assets/logo.svg}" type="image/x-icon">
+    <title>CompuTec</title>
+</head>
+
+<body>
+<div th:insert="~{administrador/template_admin.html::header}"></div>
+
+    <main>
+        <section class="section container producto">
+                <a th:href="@{/producto/crear}" class="producto__crear">Crear producto</a>
+
+                <div class="producto__contianer">
+                    <table class="producto__table">
+                        <thead>
+                            <tr>
+                                <th>Imagen</th>
+                                <th>ID</th>
+                                <th>Marca</th>
+                                <th>Modelo</th>
+                                <th>stock</th>
+                                <th>precio</th>
+                                <th>Accion 1</th>
+                                <th>Accion 2</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="p:${productos}">
+                                <td><img th:src="@{/assets/default.jpg}" alt=""></td>
+                                <td th:text="${p.id}"></td>
+                                <td th:text="${p.marca}"></td>
+                                <td th:text="${p.modelo}"></td>
+                                <td th:text="${p.stock}"></td>
+                                <td th:text="'S/.' + ${p.precio}"></td>
+                                <td><a th:href="@{/producto/edit/{id} (id=${p.id})}" class="modificar">Modificar</a></td>
+                                <td><a th:href="@{/producto/delete/{id} (id=${p.id})}" class="eliminar">Eliminar</a></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+        </section>
+    </main>
+
+
+<div th:insert="~{administrador/template_admin.html::footer}"></div>
+</body>
+
+</html>

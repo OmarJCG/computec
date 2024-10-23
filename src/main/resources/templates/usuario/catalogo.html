@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.2.0/remixicon.min.css" rel="stylesheet" />
+    <link rel="stylesheet" th:href="@{/css/catalogo.css}">
+    <link rel="shortcut icon" th:href="@{/assets/logo.svg}" type="image/x-icon">
+    <title>Document</title>
+</head>
+<body>
+<div th:insert="~{usuario/template_usuario.html::menu}" th:if="${usuario==null}"></div>
+
+<div th:insert="~{usuario/template_usuario.html::header}" th:unless="${usuario==null}"></div>
+
+    <main class="main container">
+
+            <section class="section container section__card">
+
+                <div class="card" th:each="p:${productos}">
+                    <div class="card__figure">
+                        <img th:src="@{/assets/default.jpg}" class="card__img" alt="">
+                    </div>
+
+                    <div class="card__info">
+                        <p class="card__nombre" th:text="${p.marca}+' '+${p.modelo}"></p>
+                        <p class="card__precio" th:text="'S/'+' '+ ${p.precio}"></p>
+                        <a href="" class="card__button card__button-info">ver info</a>
+                        <a href="" class="card__button card__button-comprar">Agregar al carrito</a>
+                    </div>
+
+                </div>
+
+            </section>
+    </main>
+
+<div th:insert="~{usuario/template_usuario.html::footer}"></div>
+</body>
+</html>

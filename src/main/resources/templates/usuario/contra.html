@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.2.0/remixicon.min.css" rel="stylesheet" />
+    <link rel="stylesheet" th:href="@{/css/contra.css}">
+    <link rel="shortcut icon" th:href="@{/assets/logo.svg}" type="image/x-icon">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="login">
+
+        <div class="login__data">
+            <div class="login__content">
+                <h1 class="form__title">Cambiar Contraseña</h1>
+
+                <p style="color:red; text-align:center; padding-top:.5rem" th:text="${error}"></p>
+
+                <form th:action="@{/usuario/update-contra}"  class="form__content" method="post">
+                    <div class="form__div form__div-one">
+                        <label  class="form__label">Contraseña Anterior</label>
+                        <input type="password" class="form__input" name="oldContra"  required>
+                    </div>
+
+                    <div class="form__div">
+                        <label  class="form__label">Nueva Contraseña</label>
+                        <input type="password" class="form__input" name="newContra" required>
+                    </div>
+
+                    <div class="from__registro">
+                        <a th:href="@{/usuario/info}" class="from__registro-link">Cancelar <i class="ri-arrow-right-line"></i></a>
+                    </div>
+                    
+                    <button class="form__button">Cambiar Contraseña</button>
+                </form>
+            </div>
+        </div>
+
+    </div>
+</body>
+
+</html>

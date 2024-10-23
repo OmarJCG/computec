@@ -1,0 +1,349 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+
+:root {
+    --first-color-alt: #6133eb;
+    --first-color-light: hsl(255, 40%, 80%);
+    --title-color: hsl(255, 24%, 16%);
+    --text-color: hsl(255, 8%, 45%);
+    --body-color: hsl(0, 0%, 100%);
+    --first-color-second: hsl(250, 69%, 61%);
+    --first-color-lighter: hsl(250, 92%, 85%);
+    --scroll-bar-color: hsl(250, 12%, 90%);
+    --scroll-thumb-color: hsl(245, 7%, 70%);
+
+    /* .5rem = 8px, 1rem = 16px, 1.5rem = 24px ... */
+    --h1-font-size: 1.5rem;
+    --h3-font-size: 1.125rem;
+    --normal-font-size: .938rem;
+
+    /*========== Font weight ==========*/
+    --font-medium: 500;
+    --font-semi-bold: 600;
+    
+}
+
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: "Poppins", sans-serif;
+    background-color: var(--body-color);
+    font-size: var(--normal-font-size);
+    color: var(--text-color);
+}
+
+h1,
+h2,
+h3 {
+    color: var(--title-color);
+    font-weight: var(--font-semi-bold);
+}
+
+h2 {
+    font-size: 2rem;
+}
+
+h3 {
+    font-size: var(--h3-font-size);
+}
+
+a {
+    text-decoration: none;
+    color: var(--title-color);
+    color: inherit;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    overflow: hidden;
+}
+
+p {
+    line-height: 1.5rem;
+}
+
+ul{
+    list-style: none;
+}
+
+/*==================== REUSABLE CSS CLASSES ====================*/
+.section {
+    padding: 4rem 0;
+}
+
+.section__title {
+    font-size: var(--h1-font-size);
+    color: var(--title-color);
+}
+
+.line::after{
+    content: "";
+    position: absolute;
+    background-color: var(--first-color-alt);
+    width: 500px;
+    height: 4px;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+
+
+}
+
+/*==================== LAYOUT ====================*/
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.grid {
+    display: grid;
+    gap: 1.5rem;
+}
+
+
+/*==================== button ====================*/
+
+
+/*
+=============================================
+==================== NAV ====================
+=============================================
+*/
+
+.c1,.c2,.c3,.c4,.c5,.c6,.c7,.c8,.c9{
+    color: var(--first-color-alt);
+    font-weight: bold;
+}
+
+.header {
+    width: 100%;
+    height: 3.5rem;
+    background-color:var(--body-color);
+    box-shadow: 0 0 5px rgb(0, 0, 0,.3);
+    position: fixed;
+    z-index: 99;
+}
+
+.nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+    max-width: 1350px;
+    
+}
+
+.nav__logo{
+    width: 50px;
+}
+
+.nav__logo-admin{
+    width: 110px;
+}
+
+.nav__link:hover{
+    color: var(--first-color-alt);
+}
+
+.nav__list{
+    display: flex;
+}
+
+.nav__item{
+    padding-right: 1.6rem;
+}
+
+.nav__i-carrito{
+    font-size: 1.6rem;
+}
+
+.nav__usuario{
+    position: relative;
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.nav__usuario--container{
+    display: flex;
+    font-size: 1.3rem;
+    align-items: center;
+    gap: .5rem;
+}
+
+.nav__usuario--link{
+    font-size: 1.1rem;
+}
+
+.ri-arrow-right-s-line{
+    color:var(--first-color-alt);
+    
+}
+
+.nav__despegable{
+    position: absolute;	
+    display: none;
+    width: 100%;
+	background-color: var(--first-color-light);
+    padding: 1rem ;
+    border-radius: 1rem;
+    z-index: -1;
+    top: 100%  ;
+}
+
+.nav__despegable--item{
+    padding-bottom: 1rem;
+}
+
+.nav__despegable--link:hover{
+    color: var(--first-color-alt)
+}
+
+.nav__usuario:hover .nav__usuario--container .ri-arrow-right-s-line{
+    transform: rotate(90deg);
+    transition: transform 0.2s ease-in-out;
+}
+
+.nav__usuario:hover .nav__despegable{
+    display: block;
+} 
+
+
+/*
+================================================
+==================== MAIN ====================
+===============================================
+*/
+
+/* =======PRODCTO=========== */
+
+.producto{
+    padding-top: 6rem;
+}
+
+.producto__crear{
+    background-color: var(--first-color-alt);
+    padding: 1rem 3rem;
+    color: #fff;
+    border-radius: 1rem;
+}
+
+.producto__contianer{
+    margin-top: 2rem;
+}
+
+.producto__table {
+    border-collapse: collapse;
+    background-color: #fff;
+}
+
+.producto__table th, .producto__table td {
+    padding: 1rem 0;
+    width: calc(1200px / 4);
+    text-align: center;
+}
+
+.producto__table thead {
+    background-color: #f4f4f4;
+    border-bottom: 2px solid var(--text-color);
+}
+
+.producto__table th {
+    font-weight: 600;
+    color: #333;
+}
+
+.producto__table tbody td {
+    border-bottom: 2px solid var(--text-color);
+
+}
+
+.producto__table tbody td img {
+    width: 85%;
+    aspect-ratio: 1/1;
+    object-fit: cover;
+
+}
+
+.producto__table a {
+    padding: 1rem 2rem;
+    border-radius: 1rem;
+    color: #fff;
+}
+
+.modificar{
+    background-color: #02b40b;
+}
+
+.eliminar{
+    background-color: rgb(187, 1, 1);
+}
+
+
+
+
+
+/*
+================================================
+==================== footer ====================
+===============================================
+*/
+/*==================== footer ====================*/
+.footer {
+    background-color: var(--first-color-alt);
+    color: #fff;
+    text-align: center;
+}
+
+
+.footer__links {
+    display: flex;
+    justify-content: center;
+    column-gap: 1.5rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 3px solid var(--body-color);
+}
+
+.footer__link {
+    color: #fff;
+    font-size: 1.7rem;
+
+}
+
+.footer__link:hover {
+    color: var(--first-color-light);
+}
+
+.footer__description {
+    padding-top: 2rem;
+}
+
+/*
+================================================
+==================== SCROLL ====================
+===============================================
+*/
+/*========== SCROLL BAR ==========*/
+::-webkit-scrollbar {
+    width: .8rem;
+    background-color: var(--scroll-bar-color);
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: var(--scroll-thumb-color);
+    border-radius: .4rem; 
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background-color: var(--text-color);
+}

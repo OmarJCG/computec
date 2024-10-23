@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.2.0/remixicon.min.css" rel="stylesheet" />
+
+    <link rel="stylesheet" th:href="@{css/inicio.css}">
+    <link rel="shortcut icon" th:href="@{assets/logo.svg}" type="image/x-icon">
+    <title>CompuTec</title>
+</head>
+
+<body>
+    <div th:insert="~{administrador/template_admin.html::header}"></div>
+
+    <main>
+        <Section class="portada">
+            <img class="portada__img" th:src="@{assets/inicio/portada.png}" alt="">
+        </Section>
+
+
+        <section class="categoria section container">
+
+            <h2 class="categoria__title  line">Nuestras categorias</h2>
+
+            <div class="categoria__container">
+
+                <div class="categoria__card">
+                    <a href="#">
+                        <img th:src="@{assets/inicio/procesador.jpeg}" class="categoria__img" alt="">
+                        <p class="categoria__text">Procesador</p>
+                    </a>
+                </div>
+
+                <div class="categoria__card">
+                    <a href="#">
+                        <img th:src="@{assets/inicio/ram.png}" class="categoria__img" alt="">
+                        <p class="categoria__text">Ram</p>
+                    </a>
+                </div>
+
+                <div class="categoria__card">
+                    <a href="#">
+                        <img th:src="@{assets/inicio/ssd.jpeg}" class="categoria__img" alt="">
+                        <p class="categoria__text">SSD</p>
+                    </a>
+                </div>
+
+                <div class="categoria__card">
+                    <a href="#">
+                        <img th:src="@{assets/inicio/hhd.jpeg}" class="categoria__img" alt="">
+                        <p class="categoria__text">HHD</p>
+                    </a>
+                </div>
+
+                <div class="categoria__card">
+                    <a href="#">
+                        <img th:src="@{assets/inicio/pm.jpg}" class="categoria__img" alt="">
+                        <p class="categoria__text">Tarjeta Madre</p>
+                    </a>
+                </div>
+
+                <div class="categoria__card">
+                    <a href="#">
+                        <img th:src="@{assets/inicio/tg.jpg}" class="categoria__img" alt="">
+                        <p class="categoria__text">Tarjeta Grafica</p>
+                    </a>
+                </div>
+
+                <div class="categoria__card">
+                    <a href="#">
+                        <img th:src="@{assets/inicio/disipador.jpg}" class="categoria__img" alt="">
+                        <p class="categoria__text">Disipador</p>
+                    </a>
+                </div>
+
+                <div class="categoria__card">
+                    <a href="#">
+                        <img th:src="@{assets/inicio/fp.jpeg}" class="categoria__img" alt="">
+                        <p class="categoria__text">Fuente Poder</p>
+                    </a>
+                </div>
+
+                <div class="categoria__card">
+                    <a href="#">
+                        <img th:src="@{assets/inicio/case.jpeg}" class="categoria__img" alt="">
+                        <p class="categoria__text">Case</p>
+                    </a>
+                </div>
+            </div>
+
+        </section>
+    </main>
+
+    <div th:insert="~{administrador/template_admin.html::footer}"></div>
+
+</body>
+
+</html>

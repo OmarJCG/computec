@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.2.0/remixicon.min.css" rel="stylesheet" />
+    <link rel="stylesheet" th:href="@{/css/info.css}">
+    <link rel="shortcut icon" th:href="@{/assets/logo.svg}" type="image/x-icon">
+    <title>Document</title>
+</head>
+
+<body>
+<div th:insert="~{usuario/template_usuario.html::menu}" th:if="${usuario==null}"></div>
+
+<div th:insert="~{usuario/template_usuario.html::header}" th:unless="${usuario==null}"></div>
+
+    <main class="main container">
+        <section class="perfil section">
+            <h1 class="perfil__title">Mi perfil</h1>
+
+            <div class="perfil__content">
+                <div class="perfil__figure">
+                    <img class="perfil__img" th:src="@{/assets/info/user.jpg}" alt="">
+                </div>
+                <div class="perfil__info">
+                    <h2 class="perfil__name" th:text="${usuario.nombre}+' '+ ${usuario.apellido}"></h2>
+                    <a th:href="@{/usuario/show-contra}" class="perfil__contra">cambiar contraseña</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="section tabla">
+            <table>
+                <tbody>
+                    <tr>
+                        <td>Nombres</td>
+                        <td th:text="${usuario.nombre}"></td>
+                    </tr>
+                    <tr>
+                        <td>Apellido</td>
+                        <td th:text="${usuario.apellido}"></td>
+                    </tr>
+                    <tr>
+                        <td>Genero</td>
+                        <td th:text="${usuario.genero}"></td>
+                    </tr>
+                    <tr>
+                        <td>Fecha Nacimiento</td>
+                        <td th:text="${usuario.fechaNacimiento}"></td>
+                    </tr>
+                    <tr>
+                        <td>Telefono</td>
+                        <td th:text="${usuario.numero}"></td>
+                    </tr>
+                    <tr>
+                        <td>Departamento</td>
+                        <td th:text="${usuario.departamento}"></td>
+                    </tr>
+                    <tr>
+                        <td>Provincia</td>
+                        <td th:text="${usuario.provincia}"></td>
+                    </tr>
+                    <tr>
+                        <td>Distrito</td>
+                        <td th:text="${usuario.distrito}"></td>
+                    </tr>
+                    <tr>
+                        <td>Calle</td>
+                        <td th:text="${usuario.calle}"></td>
+                    </tr>
+                    <tr>
+                        <td>Correo</td>
+                        <td th:text="${usuario.correo}"></td>
+                    </tr>
+                </tbody>
+            </table>
+
+        </section>
+    </main>
+
+<div th:insert="~{usuario/template_usuario.html::footer}"></div>
+
+</body>
+
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.2.0/remixicon.min.css" rel="stylesheet" />
+    <link rel="stylesheet" th:href="@{/css/login.css}">
+    <link rel="shortcut icon" th:href="@{/assets/logo.svg}" type="image/x-icon">
+    <title>Document</title>
+</head>
+<body>
+    <div class="login">
+        <div class="login__figure">
+            <img th:src="@{/assets/login/8.png}" class="login__img">
+        </div>
+
+        <div class="login__data">
+
+            <div class="nav container">
+                <div class="nav__logo">
+                    <a th:href="@{/}"><img src="../assets/logo.svg" alt=""></a>
+                </div>
+            </div>
+            
+            <div class="login__content">
+                <h1 class="form__title">Iniciar Sesión</h1>
+
+                <p style="color:red; text-align:center; padding-top:.5rem" th:text="${error}"></p>
+
+                <form th:action="@{/usuario/acceder}" class="form__content" method="post">
+                    <div class="form__div form__div-one">
+                        <label for="correo" class="form__label"> <i class="ri-user-fill"></i>Correo</label>
+                        <input id="correo" type="text" class="form__input" name="correo">
+                    </div>
+
+                    <div class="form__div form__div-last">
+                        <label for="password" class="form__label"><i class="ri-lock-fill"></i>Contraseña</label>
+                        <input id="password" type="password" class="form__input" name="password">
+                    </div>
+
+                    <div class="from__registro">
+                        <a th:href="@{/usuario/registro}" class="from__registro-link">¿No tienes una cuenta?</a>
+                    </div>
+                    
+                    <button class="form__button">Ingresar</button>
+                </form>
+
+                <div class="form__social">
+                    <a href="#" class="form__social-icon"><i class="ri-facebook-line"></i></a>
+                    <a href="#" class="form__social-icon"><i class="ri-instagram-line"></i></a>
+                    <a href="#" class="form__social-icon"><i class="ri-twitter-x-line"></i></a>
+                    <a href="#" class="form__social-icon"><i class="ri-youtube-line"></i></a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</body>
+</html>

@@ -1,0 +1,226 @@
+
+<div th:fragment="menu">
+    <header class="header">
+        <nav class="nav container">
+
+            <div class="nav__logo">
+                <a th:href="@{/}"><img src="../assets/logo.svg" alt=""></a>
+            </div>
+
+
+            <div class="nav__menu">
+                <ul class="nav__list">
+
+                    <li class="nav__item">
+                        <a th:href="@{/procesador}" th:class="nav__link + ' ' +${c1}">
+                            Procesador
+                        </a>
+                    </li>
+
+                    <li class="nav__item">
+                        <a th:href="@{/ram}" th:class="nav__link + ' ' +${c2}">
+                            Ram
+                        </a>
+                    </li>
+
+                    <li class="nav__item">
+                        <a th:href="@{/ssd}" th:class="nav__link + ' ' +${c3}">
+                            SSD
+                        </a>
+                    </li>
+
+                    <li class="nav__item">
+                        <a th:href="@{/hhd}" th:class="nav__link + ' ' +${c4}">
+                            HDD
+                        </a>
+                    </li>
+                    <li class="nav__item">
+                        <a th:href="@{/tarjeta-madre}" th:class="nav__link + ' ' +${c5}">
+                            Tarjeta Madre
+                        </a>
+                    </li>
+
+                    <li class="nav__item">
+                        <a th:href="@{/tarjeta-grafica}" th:class="nav__link + ' ' +${c6}">
+                            Tarjeta Grafica
+                        </a>
+                    </li>
+                    <li class="nav__item">
+                        <a th:href="@{/disipador}" th:class="nav__link + ' ' +${c7}">
+                            Disipador
+                        </a>
+                    </li>
+
+                    <li class="nav__item">
+                        <a th:href="@{/fuente-poder}" th:class="nav__link + ' '+ ${c8}">
+                            Fuente de Poder
+                        </a>
+                    </li>
+
+                    <li class="nav__item">
+                        <a th:href="@{/case}" th:class="nav__link + ' ' +${c9}">
+                            Case
+                        </a>
+                    </li>
+
+                </ul>
+            </div>
+
+            <div class="nav__carrito">
+                <a href=""><i class="ri-shopping-cart-2-fill nav__i-carrito"></i></a>
+            </div>
+
+            <div class="nav__usuario">
+
+                <div class="nav__usuario--container">
+                    <i class="ri-login-box-fill"></i>
+                    <a class="nav__usuario--link" th:href="@{/usuario/login}">Iniciar Sesión</a>
+                    <!--<i class="ri-arrow-right-s-line"></i>-->
+                </div>
+
+                <!--<ul class="nav__despegable">
+                    <li class="nav__despegable--item">
+                        <a class="nav__despegable--link" th:href="@{/usuario/login}">Iniciar sesión</a>
+                    </li>
+
+                    <li class="nav__despegable--item">
+                        <a class="nav__despegable--link" href="#">Cerrar Sesion</a>
+                    </li>
+                </ul>-->
+            </div>
+        </nav>
+    </header>
+</div>
+
+<div th:fragment="menu-user">
+    <header class="header">
+        <nav class="nav container">
+
+            <div class="nav__logo">
+                <a th:href="@{/}"><img src="../assets/logo.svg" alt=""></a>
+            </div>
+
+
+            <div class="nav__menu">
+                <ul class="nav__list">
+
+                    <li class="nav__item">
+                        <a th:href="@{/procesador}" th:class="nav__link + ' ' +${c1}">
+                            Procesador
+                        </a>
+                    </li>
+
+                    <li class="nav__item">
+                        <a th:href="@{/ram}" th:class="nav__link + ' ' +${c2}">
+                            Ram
+                        </a>
+                    </li>
+
+                    <li class="nav__item">
+                        <a th:href="@{/ssd}" th:class="nav__link + ' ' +${c3}">
+                            SSD
+                        </a>
+                    </li>
+
+                    <li class="nav__item">
+                        <a th:href="@{/hhd}" th:class="nav__link + ' ' +${c4}">
+                            HDD
+                        </a>
+                    </li>
+                    <li class="nav__item">
+                        <a th:href="@{/tarjeta-madre}" th:class="nav__link + ' ' +${c5}">
+                            Tarjeta Madre
+                        </a>
+                    </li>
+
+                    <li class="nav__item">
+                        <a th:href="@{/tarjeta-grafica}" th:class="nav__link + ' ' +${c6}">
+                            Tarjeta Grafica
+                        </a>
+                    </li>
+                    <li class="nav__item">
+                        <a th:href="@{/disipador}" th:class="nav__link + ' ' +${c7}">
+                            Disipador
+                        </a>
+                    </li>
+
+                    <li class="nav__item">
+                        <a th:href="@{/fuente-poder}" th:class="nav__link + ' '+ ${c8}">
+                            Fuente de Poder
+                        </a>
+                    </li>
+
+                    <li class="nav__item">
+                        <a th:href="@{/case}" th:class="nav__link + ' ' +${c9}">
+                            Case
+                        </a>
+                    </li>
+
+                </ul>
+            </div>
+
+            <div class="nav__carrito">
+                <a href=""><i class="ri-shopping-cart-2-fill nav__i-carrito"></i></a>
+            </div>
+
+            <div class="nav__usuario">
+
+                <div class="nav__usuario--container">
+                    <i class="ri-user-3-fill"></i>
+                    <a class="nav__usuario--link"
+                       th:href="@{/usuario/info}"
+                       th:text="${#strings.listSplit(usuario.nombre, ' ')[0]} + ' ' + ${#strings.listSplit(usuario.apellido, ' ')[0]}">
+                    </a>
+                    <i class="ri-arrow-right-s-line"></i>
+                </div>
+
+                <ul class="nav__despegable">
+                    <li class="nav__despegable--item">
+                        <a class="nav__despegable--link" th:href="@{/usuario/info}">Mi info</a>
+                    </li>
+
+                    <li class="nav__despegable--item">
+                        <a class="nav__despegable--link" href="#">Mis compras</a>
+                    </li>
+
+                    <li class="nav__despegable--item">
+                        <a class="nav__despegable--link" href="#">Libro de reclamos</a>
+                    </li>
+
+                    <li class="nav__despegable--item">
+                        <a class="nav__despegable--link" th:href="@{/usuario/cerrar}">Cerrar Sesion</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+</div>
+
+<div th:fragment="footer">
+    <footer class="footer section">
+        <div class="footer__container container">
+
+            <ul class="footer__links">
+                <li>
+                    <a href="#" class="footer__link"><i class="ri-facebook-circle-fill"></i></a>
+                </li>
+
+                <li>
+                    <a href="#" class="footer__link"><i class="ri-instagram-fill"></i></a>
+                </li>
+
+                <li>
+                    <a href="#" class="footer__link"><i class="ri-twitter-x-fill"></i></a>
+                </li>
+
+                <li>
+                    <a href="#" class="footer__link"><i class="ri-youtube-fill"></i></a>
+                </li>
+            </ul>
+
+            <p class="footer__description">Todos los derechos reservados - CompuTec 2024</p>
+
+
+        </div>
+    </footer>
+</div>

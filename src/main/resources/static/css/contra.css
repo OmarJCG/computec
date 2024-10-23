@@ -1,0 +1,159 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+
+:root {
+    --first-color: hsl(255, 90%, 60%);
+    --title-color: hsl(255, 24%, 16%);
+    --text-color: hsl(250, 8%, 45%);
+    --body-color: rgb(251, 251, 254);
+
+    /* .5rem = 8px, 1rem = 16px, 1.5rem = 24px ... */
+    --big-font-size: 2rem;
+    --h2-font-size: 1.25rem;
+    --h3-font-size: 1.125rem;
+    --normal-font-size: .938rem;
+
+    /*========== Font weight ==========*/
+    --font-semi-bold: 600;
+}
+
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    
+
+}
+
+body {
+    font-family: "Poppins", sans-serif;
+    background-color: var(--body-color);
+    font-size: var(--normal-font-size);
+    color: var(--text-color);
+}
+
+h1{
+    color: var(--title-color);
+    font-weight: var(--font-semi-bold);
+}
+
+ul {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+}
+
+
+
+/* ================LOGIN============= */
+
+.login{
+    width: 100%;
+    height: 100vh;
+}
+
+.login__data{
+    width: 100%;
+    height: 100%;
+    display: grid;
+    justify-content: center;
+    align-content: center;
+}
+
+.login__content{
+    width: 550px;
+    box-shadow: 0 0 5px 1px rgb(0, 0, 0, .3);
+    padding: 2rem 2.5rem;
+    border-radius: 2rem;
+}
+
+.form__content{
+    padding-top: 4rem;
+}
+
+.form__title{
+    font-size: var(--big-font-size);
+    border-radius: 10px 10px 0 0;
+    text-align: center;
+    position: relative;
+    padding-bottom: 1rem;
+}
+
+.form__title::before {
+    content: " ";
+    position: absolute;
+    width: 150px;
+    height: 3px;
+    background-color: var(--first-color);
+    border-radius: 10px;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+}
+
+.form__div{
+    display: grid;
+    margin-bottom: 3.5rem;
+}
+
+.form__label{
+    margin-bottom: 0.5rem;
+    font-weight: var(--font-semi-bold);
+}
+
+.form__label i{
+    margin-right:.5rem ;
+}
+
+.form__input{
+    border:2px solid var(--text-color);
+    padding: .6rem;
+    outline: none;
+    color: var(--text-color);
+    border-radius: .5rem;
+    font-size: var(--normal-font-size);
+    
+}
+.form__div:has(> .form__input:focus) > .form__label{
+    color: var(--first-color);
+}
+.form__input:focus{
+    border: 2px solid var(--first-color);
+    color: var(--first-color);
+}
+
+.from__registro{
+    text-align: end;
+    padding-bottom: 2.5rem;
+}
+
+.from__registro-link{
+    color: var(--first-color);
+}
+
+.from__registro-link:hover{
+    color:var(--title-color);
+}
+
+/* ==========button */
+.form__button{
+    margin-inline:10% ;
+    width: 80%;
+    padding: 1rem;
+    font-size: var(--normal-font-size);
+    border: none;
+    margin-bottom: 3rem;
+    background-color: var(--first-color);
+    color: #fff;
+    border-radius: .5rem;
+    cursor: pointer;
+    transition: .3s;
+    font-weight: var(--font-semi-bold);
+}
+.form__button:hover{
+    background-color: var(--title-color);
+}
+
+
