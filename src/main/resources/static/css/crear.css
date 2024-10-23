@@ -75,6 +75,13 @@ ul{
     list-style: none;
 }
 
+input:read-only {
+    background-color: #f0f0f0; /* Fondo más claro */
+    border: 1px solid #ccc;    /* Borde gris */
+    color: #666;               /* Texto gris */
+    cursor: not-allowed;       /* Cursor no permitido */
+}
+
 /*==================== REUSABLE CSS CLASSES ====================*/
 .section {
     padding: 4rem 0;

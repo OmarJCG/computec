@@ -4,6 +4,7 @@ import com.computec.computec.model.Producto;
 import com.computec.computec.model.Usuario;
 import com.computec.computec.service.IProductoService;
 import com.computec.computec.service.IUsuarioService;
+import com.google.common.collect.ImmutableMap;
 import jakarta.servlet.http.HttpSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -30,155 +31,38 @@ public class ProductoController {
     @Autowired
     private IProductoService productoService;
 
-    @GetMapping("/procesador")
-    public String showProcesador(Model model, HttpSession session){
-        model.addAttribute("productos", productoService.findAllByCategoria("procesador"));
-        model.addAttribute("usuario", session.getAttribute("usuario"));
-        model.addAttribute("c1", "c1");
-        model.addAttribute("c2", "");
-        model.addAttribute("c3", "");
-        model.addAttribute("c4", "");
-        model.addAttribute("c5", "");
-        model.addAttribute("c6", "");
-        model.addAttribute("c7", "");
-        model.addAttribute("c8", "");
-        model.addAttribute("c9", "");
-        return "producto/show";
-    }
+    @GetMapping("/show/{categoria}")
+    public String showProducto(@PathVariable String categoria, Model model, HttpSession session){
 
-    @GetMapping("/ram")
-    public String showRam(Model model, HttpSession session){
-        model.addAttribute("productos", productoService.findAllByCategoria("ram"));
-        model.addAttribute("usuario", session.getAttribute("usuario"));
-        model.addAttribute("c1", "");
-        model.addAttribute("c2", "c2");
-        model.addAttribute("c3", "");
-        model.addAttribute("c4", "");
-        model.addAttribute("c5", "");
-        model.addAttribute("c6", "");
-        model.addAttribute("c7", "");
-        model.addAttribute("c8", "");
-        model.addAttribute("c9", "");
+        //Logback
+        LOGGER.info("Categoria enviada : {}", categoria);
 
-        return "producto/show";
-    }
+        // Google Guava
+        ImmutableMap<String, String> productosPorCategoria = ImmutableMap.of(
+                "procesador","procesador",
+                "ram","ram",
+                "ssd","ssd",
+                "hhd","hhd",
+                "tarjeta-madre","tmadre",
+                "tarjeta-grafica","tgrafica",
+                "disipador","disipador",
+                "fuente-poder","fpoder",
+                "case", "case"
+        );
 
-    @GetMapping("/ssd")
-    public String showSSD(Model model, HttpSession session){
-        model.addAttribute("productos", productoService.findAllByCategoria("ssd"));
-        model.addAttribute("usuario", session.getAttribute("usuario"));
-        model.addAttribute("c1", "");
-        model.addAttribute("c2", "");
-        model.addAttribute("c3", "c3");
-        model.addAttribute("c4", "");
-        model.addAttribute("c5", "");
-        model.addAttribute("c6", "");
-        model.addAttribute("c7", "");
-        model.addAttribute("c8", "");
-        model.addAttribute("c9", "");
-        return "producto/show";
-    }
+        model.addAttribute("productos", productoService.findAllByCategoria(productosPorCategoria.get(categoria)));
 
-    @GetMapping("/hhd")
-    public String showHHD(Model model, HttpSession session){
-        model.addAttribute("productos", productoService.findAllByCategoria("hhd"));
         model.addAttribute("usuario", session.getAttribute("usuario"));
-        model.addAttribute("c1", "");
-        model.addAttribute("c2", "");
-        model.addAttribute("c3", "");
-        model.addAttribute("c4", "c4");
-        model.addAttribute("c5", "");
-        model.addAttribute("c6", "");
-        model.addAttribute("c7", "");
-        model.addAttribute("c8", "");
-        model.addAttribute("c9", "");
-        return "producto/show";
-    }
 
-    @GetMapping("/tarjeta-madre")
-    public String showTMadre(Model model, HttpSession session){
-        model.addAttribute("productos", productoService.findAllByCategoria("tmadre"));
-        model.addAttribute("usuario", session.getAttribute("usuario"));
-        model.addAttribute("c1", "");
-        model.addAttribute("c2", "");
-        model.addAttribute("c3", "");
-        model.addAttribute("c4", "");
-        model.addAttribute("c5", "c5");
-        model.addAttribute("c6", "");
-        model.addAttribute("c7", "");
-        model.addAttribute("c8", "");
-        model.addAttribute("c9", "");
-        return "producto/show";
-    }
-
-    @GetMapping("/tarjeta-grafica")
-    public String showTGrafica(Model model, HttpSession session){
-        model.addAttribute("productos", productoService.findAllByCategoria("tgrafica"));
-        model.addAttribute("usuario", session.getAttribute("usuario"));
-        model.addAttribute("c1", "");
-        model.addAttribute("c2", "");
-        model.addAttribute("c3", "");
-        model.addAttribute("c4", "");
-        model.addAttribute("c5", "");
-        model.addAttribute("c6", "c6");
-        model.addAttribute("c7", "");
-        model.addAttribute("c8", "");
-        model.addAttribute("c9", "");
-        return "producto/show";
-    }
-
-    @GetMapping("/disipador")
-    public String showDisipador(Model model, HttpSession session){
-        model.addAttribute("productos", productoService.findAllByCategoria("disipador"));
-        model.addAttribute("usuario", session.getAttribute("usuario"));
-        model.addAttribute("c1", "");
-        model.addAttribute("c2", "");
-        model.addAttribute("c3", "");
-        model.addAttribute("c4", "");
-        model.addAttribute("c5", "");
-        model.addAttribute("c6", "");
-        model.addAttribute("c7", "c7");
-        model.addAttribute("c8", "");
-        model.addAttribute("c9", "");
-        return "producto/show";
-    }
-
-    @GetMapping("/fuente-poder")
-    public String showFpoder(Model model, HttpSession session){
-        model.addAttribute("productos", productoService.findAllByCategoria("fpoder"));
-        model.addAttribute("usuario", session.getAttribute("usuario"));
-        model.addAttribute("c1", "");
-        model.addAttribute("c2", "");
-        model.addAttribute("c3", "");
-        model.addAttribute("c4", "");
-        model.addAttribute("c5", "");
-        model.addAttribute("c6", "");
-        model.addAttribute("c7", "");
-        model.addAttribute("c8", "c8");
-        model.addAttribute("c9", "");
-        return "producto/show";
-    }
-
-    @GetMapping("/case")
-    public String showCase(Model model, HttpSession session){
-        model.addAttribute("productos", productoService.findAllByCategoria("case"));
-        model.addAttribute("usuario", session.getAttribute("usuario"));
-        model.addAttribute("c1", "");
-        model.addAttribute("c2", "");
-        model.addAttribute("c3", "");
-        model.addAttribute("c4", "");
-        model.addAttribute("c5", "");
-        model.addAttribute("c6", "");
-        model.addAttribute("c7", "");
-        model.addAttribute("c8", "");
-        model.addAttribute("c9", "c9");
         return "producto/show";
     }
 
 
     @GetMapping("/crear")
     public String crear(Model model, HttpSession session){
+
         model.addAttribute("usuario", session.getAttribute("usuario"));
+
         return "producto/crear";
     }
 
@@ -190,37 +74,20 @@ public class ProductoController {
 
         productoService.save(producto);
 
-        String ruta = "";
+        // Google Guava
+        ImmutableMap<String, String> productosPorCategoria = ImmutableMap.of(
+                "procesador","procesador",
+                "ram","ram",
+                "ssd","ssd",
+                "hhd","hhd",
+                "tmadre","tarjeta-madre",
+                "tgrafica","tarjeta-grafica",
+                "disipador","disipador",
+                "fpoder","fuente-poder",
+                "case", "case"
+        );
 
-        switch (producto.getCategoria()) {
-            case "procesador":
-                ruta =  "redirect:/producto/procesador";
-                break;
-            case "ram":
-                ruta = "redirect:/producto/ram";
-                break;
-            case "ssd":
-                ruta = "redirect:/producto/ssd";
-                break;
-            case "hhd":
-                ruta ="redirect:/producto/hhd";
-                break;
-            case "tmadre":
-                ruta = "redirect:/producto/tarjeta-madre";
-                break;
-            case "tgrafica":
-                ruta = "redirect:/producto/tarjeta-grafica";
-                break;
-            case "disipador":
-                ruta = "redirect:/producto/disipador";
-                break;
-            case "fpoder":
-                ruta = "redirect:/producto/fuente-poder";
-                break;
-            case "case":
-                ruta = "redirect:/producto/case";
-                break;
-        }
+        String ruta = "redirect:/producto/show/"+productosPorCategoria.get(producto.getCategoria());
 
         return ruta;
     }
@@ -235,44 +102,26 @@ public class ProductoController {
         Producto producto = optionalProducto.get();
 
         //Logback
-        LOGGER.info("producto : {}", producto);
+        LOGGER.info("producto de la base de datos : {}", producto);
 
         model.addAttribute("p", producto);
 
-        String categoria= "";
+        String categoria= producto.getCategoria();
 
+        // Google Guava
+        ImmutableMap<String, String> productosPorCategoria = ImmutableMap.of(
+                "procesador","procesador",
+                "ram","ram",
+                "ssd","ssd",
+                "hhd","hhd",
+                "tmadre","tarjeta-madre",
+                "tgrafica","tarjeta-grafica",
+                "disipador","disipador",
+                "fpoder","fuente-poder",
+                "case", "case"
+        );
 
-        switch (producto.getCategoria()) {
-            case "procesador":
-                categoria= "Procesador";
-                break;
-            case "ram":
-                categoria= "Ram";
-                break;
-            case "ssd":
-                categoria= "SSD";
-                break;
-            case "hhd":
-                categoria= "HHD";;
-                break;
-            case "tmadre":
-                categoria= "Tarjeta madre";
-                break;
-            case "tgrafica":
-                categoria= "Tarjeta grafica";
-                break;
-            case "disipador":
-                categoria= "Disipador";
-                break;
-            case "fpoder":
-                categoria= "Fuente de poder";
-                break;
-            case "case":
-                categoria= "Case";
-                break;
-        }
-
-        model.addAttribute("categoria", categoria);
+        model.addAttribute("categoria", productosPorCategoria.get(categoria));
 
         return "producto/edit";
     }
@@ -280,48 +129,26 @@ public class ProductoController {
     @PostMapping("/update")
     public String update(Producto producto){
 
+        //Logback
         LOGGER.info("producto formulario modificar: {}", producto);
 
         String ruta = "";
 
-        switch (producto.getCategoria()) {
-            case "Procesador":
-                producto.setCategoria("procesador");
-                ruta =  "redirect:/producto/procesador";
-                break;
-            case "Ram":
-                producto.setCategoria("ram");
-                ruta = "redirect:/producto/ram";
-                break;
-            case "SSD":
-                producto.setCategoria("ssd");
-                ruta = "redirect:/producto/ssd";
-                break;
-            case "HHD":
-                producto.setCategoria("hhd");
-                ruta ="redirect:/producto/hhd";
-                break;
-            case "Tarjeta madre":
-                producto.setCategoria("tmadre");
-                ruta = "redirect:/producto/tarjeta-madre";
-                break;
-            case "Tarjeta grafica":
-                producto.setCategoria("tgrafica");
-                ruta = "redirect:/producto/tarjeta-grafica";
-                break;
-            case "Disipador":
-                producto.setCategoria("disipador");
-                ruta = "redirect:/producto/disipador";
-                break;
-            case "Fuente de poder":
-                producto.setCategoria("fpoder");
-                ruta = "redirect:/producto/fuente-poder";
-                break;
-            case "Case":
-                producto.setCategoria("case");
-                ruta = "redirect:/producto/case";
-                break;
-        }
+        // Google Guava
+        ImmutableMap<String, String> productosPorCategoria = ImmutableMap.of(
+                "procesador","procesador",
+                "ram","ram",
+                "ssd","ssd",
+                "hhd","hhd",
+                "tarjeta-madre","tmadre",
+                "tarjeta-grafica","tgrafica",
+                "disipador","disipador",
+                "fuente-poder","fpoder",
+                "case", "case"
+        );
+
+        producto.setCategoria(productosPorCategoria.get(producto.getCategoria()));
+        ruta = "redirect:/producto/show/"+producto.getCategoria();
 
         productoService.update(producto);
 
@@ -333,42 +160,25 @@ public class ProductoController {
 
         Optional<Producto>  producto = productoService.get(id);
 
-
         String ruta = "";
 
-        switch (producto.get().getCategoria()) {
-            case "procesador":
-                ruta =  "redirect:/producto/procesador";
-                break;
-            case "ram":
-                ruta = "redirect:/producto/ram";
-                break;
-            case "ssd":
-                ruta = "redirect:/producto/ssd";
-                break;
-            case "hhd":
-                ruta ="redirect:/producto/hhd";
-                break;
-            case "tmadre":
-                ruta = "redirect:/producto/tarjeta-madre";
-                break;
-            case "tgrafica":
-                ruta = "redirect:/producto/tarjeta-grafica";
-                break;
-            case "disipador":
-                ruta = "redirect:/producto/disipador";
-                break;
-            case "fpoder":
-                ruta = "redirect:/producto/fuente-poder";
-                break;
-            case "case":
-                ruta = "redirect:/producto/case";
-                break;
-        }
+        // Google Guava
+        ImmutableMap<String, String> productosPorCategoria = ImmutableMap.of(
+                "procesador","procesador",
+                "ram","ram",
+                "ssd","ssd",
+                "hhd","hhd",
+                "tmadre","tarjeta-madre",
+                "tgrafica","tarjeta-grafica",
+                "disipador","disipador",
+                "fpoder","fuente-poder",
+                "case", "case"
+        );
+
 
         productoService.delete(id);
 
-        return ruta;
+        return "redirect:/producto/show/"+productosPorCategoria.get(producto.get().getCategoria());
 
     }
 }
