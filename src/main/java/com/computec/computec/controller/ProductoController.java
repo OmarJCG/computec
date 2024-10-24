@@ -2,12 +2,10 @@ package com.computec.computec.controller;
 
 import com.computec.computec.model.DetalleProducto;
 import com.computec.computec.model.Producto;
-import com.computec.computec.model.Usuario;
 import com.computec.computec.service.IDetalleProductoService;
 import com.computec.computec.service.IProductoService;
 import com.computec.computec.service.IUsuarioService;
 import com.computec.computec.service.impl.UploadFileSerivice;
-import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import jakarta.servlet.http.HttpSession;
 import org.slf4j.Logger;

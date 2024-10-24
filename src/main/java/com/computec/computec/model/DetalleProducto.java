@@ -2,6 +2,9 @@ package com.computec.computec.model;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @Table(name = "detalleProducto")
 public class DetalleProducto {
@@ -40,6 +43,22 @@ public class DetalleProducto {
         this.c9 = c9;
         this.c10 = c10;
         this.c11 = c11;
+    }
+
+    public List<String> getValores() {
+        List<String> values = new ArrayList<>();
+        values.add(c1);
+        values.add(c2);
+        values.add(c3);
+        values.add(c4);
+        values.add(c5);
+        values.add(c6);
+        values.add(c7);
+        values.add(c8);
+        values.add(c9);
+        values.add(c10);
+        values.add(c11);
+        return values;
     }
 
     public Integer getId() {

@@ -1,0 +1,555 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+
+:root {
+    --first-color-alt: #6133eb;
+    --first-color-light: hsl(255, 40%, 80%);
+    --title-color: hsl(255, 24%, 16%);
+    --text-color: hsl(255, 8%, 45%);
+    --body-color: hsl(0, 0%, 100%);
+    --first-color-second: hsl(250, 69%, 61%);
+    --first-color-lighter: hsl(250, 92%, 85%);
+    --scroll-bar-color: hsl(250, 12%, 90%);
+    --scroll-thumb-color: hsl(245, 7%, 70%);
+
+    /* .5rem = 8px, 1rem = 16px, 1.5rem = 24px ... */
+    --h1-font-size: 1.5rem;
+    --h3-font-size: 1.125rem;
+    --normal-font-size: .938rem;
+
+    /*========== Font weight ==========*/
+    --font-medium: 500;
+    --font-semi-bold: 600;
+
+}
+
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: "Poppins", sans-serif;
+    background-color: var(--body-color);
+    font-size: var(--normal-font-size);
+    color: var(--text-color);
+}
+
+h1,
+h2,
+h3 {
+    color: var(--title-color);
+    font-weight: var(--font-semi-bold);
+}
+
+h2 {
+    font-size: 2rem;
+}
+
+h3 {
+    font-size: var(--h3-font-size);
+}
+
+a {
+    text-decoration: none;
+    color: var(--title-color);
+    color: inherit;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    overflow: hidden;
+}
+
+p {
+    line-height: 1.5rem;
+}
+
+ul {
+    list-style: none;
+}
+
+/*==================== REUSABLE CSS CLASSES ====================*/
+.section {
+    padding: 4rem 0;
+}
+
+.section__title {
+    font-size: var(--h1-font-size);
+    color: var(--title-color);
+}
+
+.line::after {
+    content: "";
+    position: absolute;
+    background-color: var(--first-color-alt);
+    width: 500px;
+    height: 4px;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+
+
+}
+
+/*==================== LAYOUT ====================*/
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.grid {
+    display: grid;
+    gap: 1.5rem;
+}
+
+
+/*==================== button ====================*/
+button:hover{
+    opacity: .5;
+}
+
+/*
+=============================================
+==================== NAV ====================
+=============================================
+*/
+.header {
+    width: 100%;
+    height: 3.5rem;
+    background-color: var(--body-color);
+    box-shadow: 0 0 5px rgb(0, 0, 0, .3);
+    position: fixed;
+    z-index: 99;
+}
+
+.nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+    max-width: 1350px;
+
+}
+
+.nav__logo {
+    width: 50px;
+}
+
+.nav__link:hover {
+    color: var(--first-color-alt);
+}
+
+.nav__list {
+    display: flex;
+}
+
+.nav__item {
+    padding-right: 1.6rem;
+}
+
+.nav__i-carrito {
+    font-size: 1.6rem;
+}
+
+.nav__usuario {
+    position: relative;
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.nav__usuario--container {
+    display: flex;
+    font-size: 1.3rem;
+    align-items: center;
+    gap: .5rem;
+}
+
+.nav__usuario--link {
+    font-size: 1.1rem;
+}
+
+.ri-arrow-right-s-line {
+    color: var(--first-color-alt);
+
+}
+
+.nav__despegable {
+    position: absolute;
+    display: none;
+    width: 100%;
+    background-color: var(--first-color-light);
+    padding: 1rem;
+    border-radius: 1rem;
+    z-index: -1;
+    top: 100%;
+}
+
+.nav__despegable--item {
+    padding-bottom: 1rem;
+}
+
+.nav__despegable--link:hover {
+    color: var(--first-color-alt)
+}
+
+.nav__usuario:hover .nav__usuario--container .ri-arrow-right-s-line {
+    transform: rotate(90deg);
+    transition: transform 0.2s ease-in-out;
+}
+
+.nav__usuario:hover .nav__despegable {
+    display: block;
+}
+
+
+/*
+================================================
+==================== INICIO ====================
+===============================================
+*/
+
+/* ======================================================================================================================== */
+/* ======================================================================================================================== */
+/* ======================================================================================================================== */
+.info {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    height: 650px;
+    gap: 1rem;
+}
+
+.info__figure {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    text-align: center;
+
+}
+
+.info__figure img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+
+.info__info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    row-gap: 1rem;
+}
+
+.info__title {
+    font-size: 2.5rem;
+    position: relative;
+    padding-top: 1rem;
+}
+
+.info__title::before {
+    content: " ";
+    position: absolute;
+    width: 100%;
+    height: 3px;
+    background-color: var(--first-color-alt);
+    border-radius: 10px;
+    top: 0;
+    left: 0;
+    border: 1rem;
+}
+
+.info__precio {
+    color: var(--first-color-alt);
+    font-weight: 800;
+    font-size: 1.2rem;
+}
+
+.info__opciones {
+    border: 1px solid var(--first-color-alt);
+    padding: 2.5rem 0 1rem;
+    width: 70%;
+    margin-inline: auto;
+    display: flex;
+    justify-content: space-evenly;
+    text-align: center;
+    border-radius: 1rem;
+}
+
+.info__opciones i {
+    color: var(--first-color-alt);
+    font-size: 1.5rem;
+    border: 1px solid var(--first-color-alt);
+    padding: 1rem;
+    background-color: var(--light);
+    border-radius: 50%;
+}
+
+.info__opcion-texto {
+    margin-top: 1rem;
+}
+
+.info__accion {
+    padding-top: 1rem;
+}
+
+.button {
+    background-color: var(--first-color-alt);
+    padding: 1.2rem 2rem;
+    outline: none;
+    border: none;
+    font-weight: bold;
+    color: #fff;
+    border-radius: 1rem;
+    width: 300px;
+    cursor: pointer;
+}
+
+/* ========================== tabla */
+.tablero {
+    padding: 0 0 4rem;
+}
+
+.tablero__title {
+    position: relative;
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+.tablero__title::before {
+    content: " ";
+    position: absolute;
+    width: 600px;
+    height: 3px;
+    background-color: var(--first-color-alt);
+    border-radius: 10px;
+    bottom: -5px;
+    left: 0;
+    right: 0;
+    margin: auto;
+}
+
+
+table {
+    border-collapse: collapse;
+    width: 80%;
+    margin: auto;
+}
+
+table tr th {
+    background-color: var(--light);
+    color: var(--first-color-second);
+}
+
+
+table tr td:first-child {
+    color: var(--title-color);
+    font-weight: 600;
+}
+
+th,
+td {
+    border: 2px solid var(--first-color-lighter);
+    text-align: left;
+    padding: 8px;
+}
+
+/* =================== CALIFICAION */
+.calificacion__title{
+    width: max-content;
+    border-bottom: 3px solid var(--first-color-alt);
+    padding-bottom: .5rem;
+    padding-inline: 2rem;
+    margin-bottom: 1rem;
+}
+
+.calificacion__estrella {
+    text-align: center;
+}
+
+.calificacion__estrella label {
+    font-size: 3rem;
+}
+
+.calificacion__estrella input[type="radio"] {
+    display: none;
+}
+
+.calificacion__estrella label {
+    color: grey;
+    cursor: pointer;
+}
+
+.calificacion__estrella {
+    direction: rtl;
+    unicode-bidi: bidi-override;
+}
+
+.calificacion__estrella label:hover,
+.calificacion__estrella label:hover~label {
+    color: var(--first-color-alt);
+}
+
+.calificacion__estrella input[type="radio"]:checked~label {
+    color: var(--first-color-alt);
+}
+
+.calificacion__comentar textarea{
+    width: 100%;
+    height: 100px;
+    resize: none;
+    border: none;
+    outline: none;
+    border: 2px solid var(--text-color);
+    border-radius: 1rem;
+    padding: 1rem;
+    font-size: 0.9rem;
+    margin: 1rem 0;
+}
+
+.calificacion__comentar:has(> textarea:focus) > label{
+    color: var(--first-color-alt);
+}
+
+.calificacion__comentar textarea:focus{
+    border: 2px solid var(--first-color-alt);
+    color: var(--first-color-alt);
+}
+
+.calificacion__button{
+    text-align: center;
+}
+
+.calificacion__button button{
+    background-color: var(--first-color-alt);
+    padding: 1.2rem 2rem;
+    outline: none;
+    border: none;
+    font-weight: bold;
+    color: #fff;
+    border-radius: 1rem;
+    width: 300px;
+    cursor: pointer;
+}
+
+/* ======================TESTIMONIO */
+
+.testimonio{
+    padding-top: 0rem;
+    max-width: 950px;
+    margin: auto;
+}
+
+.testimonio__card{
+    box-shadow: 0 0 5px rgb(0, 0, 0, .5);
+    padding: 1rem 2rem;
+    border-radius: 1rem;
+    margin-bottom: 2rem;
+}
+
+.testimonio__hero{
+    display: flex;
+    gap: 1rem;
+    justify-content: space-between;
+}
+
+.testimonio__perfil{
+    display: flex;
+    gap: 1rem;
+    
+}
+
+.testimonio__img{
+    width: 50px;
+    aspect-ratio: 1/1;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.testimonio__info{
+    padding-top: .1rem;
+    font-size: .85rem;
+}
+
+.testimonio__nombre{
+    color: #000;
+    font-weight: bold;
+}
+
+.testimonio__estrellas{
+    padding-left: 2rem;
+    font-size: 1.39rem;
+    padding-right: .5rem;
+}
+
+.testimonio__estrellas b {
+    color: var(--first-color-alt);
+}
+
+.testimonio__main p{
+    padding-top: .5rem;
+}
+
+
+/*
+================================================
+==================== footer ====================
+===============================================
+*/
+/*==================== footer ====================*/
+.footer {
+    background-color: var(--first-color-alt);
+    color: #fff;
+    text-align: center;
+}
+
+
+.footer__links {
+    display: flex;
+    justify-content: center;
+    column-gap: 1.5rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 3px solid var(--body-color);
+}
+
+.footer__link {
+    color: #fff;
+    font-size: 1.7rem;
+
+}
+
+.footer__link:hover {
+    color: var(--first-color-light);
+}
+
+.footer__description {
+    padding-top: 2rem;
+}
+
+/*
+================================================
+==================== SCROLL ====================
+===============================================
+*/
+/*========== SCROLL BAR ==========*/
+::-webkit-scrollbar {
+    width: .8rem;
+    background-color: var(--scroll-bar-color);
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: var(--scroll-thumb-color);
+    border-radius: .4rem;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background-color: var(--text-color);
+}

@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.2.0/remixicon.min.css" rel="stylesheet" />
+    <link rel="stylesheet" th:href="@{/css/infoproducto.css}">
+    <link rel="shortcut icon" th:href="@{/assets/logo.svg}" type="image/x-icon">
+    <title>Document</title>
+</head>
+
+<body>
+<div th:insert="~{usuario/template_usuario.html::menu}" th:if="${usuario==null}"></div>
+
+<div th:insert="~{usuario/template_usuario.html::header}" th:unless="${usuario==null}"></div>
+
+    <main class="main container">
+        <section class="section info">
+            <div class="info__figure">
+                <img th:src="@{/images/{img} (img=${p.img})}" alt="">
+            </div>
+
+            <div class="info__info">
+                <h2 class="info__title" th:text="${p.marca}+' '+${p.modelo}"></h2>
+                <p class="info__precio" th:text="'S/'+' '+ ${p.precio}"></p>
+
+                <div class="info__opciones">
+                    <div class="info__opcion">
+                        <i class="ri-caravan-line"></i>
+                        <p class="info__opcion-texto">Despacho a domicilio</p>
+                    </div>
+
+                    <div class="info__opcion">
+                        <i class="ri-store-2-line"></i>
+                        <p class="info__opcion-texto">Retira en tienda</p>
+                    </div>
+                </div>
+
+                <div class="info__accion">
+                    <a class="button">Agregar al Carrito</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="section tablero">
+            <h2 class="tablero__title">Especificaciones</h2>
+            <table>
+                <tr th:each="v, iter : ${valores}">
+                    <th th:text="${atributoDetalle.get(iter.index)}"></th>
+                    <td th:text="${v}"></td>
+                </tr>
+            </table>
+        </section>
+
+        <section class="section calificacion">
+            <h2 class="calificacion__title">Reseña el producto</h2>
+
+            <div class="calificacion__content">
+                <form class="calificacion__form">
+
+                    <div class="calificacion__estrella">
+                        <input id="radio1" type="radio" name="estrellas" value="5" />
+                        <label for="radio1">&#9733; </label>
+
+                        <input id="radio2" type="radio" name="estrellas" value="4" />
+                        <label for="radio2">&#9733; </label>
+                        
+                        <input id="radio3" type="radio" name="estrellas" value="3" />
+                        <label for="radio3">&#9733; </label>
+                        
+                        <input id="radio4" type="radio" name="estrellas" value="2" />
+                        <label for="radio4">&#9733; </label>
+                        
+                        <input id="radio5" type="radio" name="estrellas" value="1" />
+                        <label for="radio5">&#9733; </label>
+                    </div>
+
+                    <div class="calificacion__comentar">
+                        <label for="">¿Qué te gustaría decir acerca de este producto?</label>
+                        <textarea name="" id=""></textarea>
+                    </div>
+
+                    <div class="calificacion__button">
+                        <button type="submit">Enviar reseña</button>
+                    </div>
+                </form>
+            </div>
+        </section>
+
+        <section class="testimonio section">
+            <div class="testimonio__card">
+                <div class="testimonio__hero">
+                    <div class="testimonio__perfil">
+                        <div class="testimonio__figure">
+                            <img class="testimonio__img" th:src="@{/assets/info/user.jpg}" alt="">
+                        </div>
+                        <div class="testimonio__info">
+                            <p class="testimonio__nombre">Omar jesus carrasco Guerrero</p>
+                            <p>2004/04/03</p>
+                        </div>
+                    </div>
+
+                    <div class="testimonio__estralla">
+                        <div class="testimonio__estrellas">
+                            <b class="testimonio__1">&#9733;</b>
+                            <b class="testimonio__2">&#9733;</b>
+                            <b class="testimonio__3">&#9733;</b>
+                            <b class="testimonio__4 ">&#9733;</b>
+                            <b class="testimonio__5">&#9733;</b>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonio__main">
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nesciunt at nobis nulla commodi rem, natus vel impedit autem et adipisci?</p>
+                </div>
+            </div>
+
+            <div class="testimonio__card">
+                <div class="testimonio__hero">
+                    <div class="testimonio__perfil">
+                        <div class="testimonio__figure">
+                            <img class="testimonio__img" src="../../assets/info/user.jpg" alt="">
+                        </div>
+                        <div class="testimonio__info">
+                            <p class="testimonio__nombre">Omar jesus carrasco Guerrero</p>
+                            <p>2004/04/03</p>
+                        </div>
+                    </div>
+
+                    <div class="testimonio__estralla">
+                        <div class="testimonio__estrellas">
+                            <b class="testimonio__1">&#9733;</b>
+                            <b class="testimonio__2">&#9733;</b>
+                            <b class="testimonio__3">&#9733;</b>
+                            <b class="testimonio__4 ">&#9733;</b>
+                            <b class="testimonio__5">&#9733;</b>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonio__main">
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nesciunt at nobis nulla commodi rem, natus vel impedit autem et adipisci?</p>
+                </div>
+            </div>
+
+            <div class="testimonio__card">
+                <div class="testimonio__hero">
+                    <div class="testimonio__perfil">
+                        <div class="testimonio__figure">
+                            <img class="testimonio__img" src="../../assets/info/user.jpg" alt="">
+                        </div>
+                        <div class="testimonio__info">
+                            <p class="testimonio__nombre">Omar jesus carrasco Guerrero</p>
+                            <p>2004/04/03</p>
+                        </div>
+                    </div>
+
+                    <div class="testimonio__estralla">
+                        <div class="testimonio__estrellas">
+                            <b class="testimonio__1">&#9733;</b>
+                            <b class="testimonio__2">&#9733;</b>
+                            <b class="testimonio__3">&#9733;</b>
+                            <b class="testimonio__4 ">&#9733;</b>
+                            <b class="testimonio__5">&#9733;</b>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonio__main">
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nesciunt at nobis nulla commodi rem, natus vel impedit autem et adipisci?</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+<div th:insert="~{usuario/template_usuario.html::footer}"></div>
+</body>
+
+</html>
