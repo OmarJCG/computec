@@ -33,7 +33,7 @@ public class HomeController {
     }
 
     @GetMapping("/show/{categoria}")
-    public String catProcesador(@PathVariable String categoria, Model model, HttpSession session){
+    public String showProductosr(@PathVariable String categoria, Model model, HttpSession session){
 
         //Logback
         LOGGER.info("Categoria enviada : {}", categoria);

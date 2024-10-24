@@ -19,7 +19,7 @@
 
                 <div class="card" th:each="p:${productos}">
                     <div class="card__figure">
-                        <img th:src="@{/assets/default.jpg}" class="card__img" alt="">
+                        <img th:src="@{/images/{img} (img=${p.img})}" class="card__img" alt="">
                     </div>
 
                     <div class="card__info">
