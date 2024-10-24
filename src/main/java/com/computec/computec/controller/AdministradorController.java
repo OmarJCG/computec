@@ -29,4 +29,6 @@ public class AdministradorController {
 
         return "administrador/inicio";
     }
+
+
 }

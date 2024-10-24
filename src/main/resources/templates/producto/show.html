@@ -34,7 +34,7 @@
                         </thead>
                         <tbody>
                             <tr th:each="p:${productos}">
-                                <td><img th:src="@{/assets/default.jpg}" alt=""></td>
+                                <td><img th:src="@{/images/{img} (img=${p.img})}" alt=""></td>
                                 <td th:text="${p.id}"></td>
                                 <td th:text="${p.marca}"></td>
                                 <td th:text="${p.modelo}"></td>
