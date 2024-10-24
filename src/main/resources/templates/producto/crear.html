@@ -16,7 +16,7 @@
 
             <h1 class="formularios__titulo">Crear producto</h1>
 
-            <form th:action="@{/producto/save}"  method="post" class="formularios__form">
+            <form th:action="@{/producto/save}"  method="post" class="formularios__form" enctype="multipart/form-data">
 
                 <div class="formularios__general">
 
@@ -24,7 +24,7 @@
 
                     <div class="Info__general">
 
-                        <input type="hidden" name="txtID" id="txtID">
+                        <input type="hidden" name="id" id="id">
 
                         <div class="formularios__item">
                             <label for="categoria" class="formularios__label">Categoria</label>
@@ -65,7 +65,7 @@
         
                         <div class="formularios__item">
                             <label class="formularios__label">IMG</label>
-                            <input class="formularios__input" type="file" name="img">
+                            <input class="formularios__input" type="file" id="image" name="image">
                         </div>
                     </div>
 

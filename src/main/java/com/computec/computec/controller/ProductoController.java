@@ -4,6 +4,7 @@ import com.computec.computec.model.Producto;
 import com.computec.computec.model.Usuario;
 import com.computec.computec.service.IProductoService;
 import com.computec.computec.service.IUsuarioService;
+import com.computec.computec.service.impl.UploadFileSerivice;
 import com.google.common.collect.ImmutableMap;
 import jakarta.servlet.http.HttpSession;
 import org.slf4j.Logger;
@@ -11,11 +12,10 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.Optional;
 
 
@@ -30,6 +30,9 @@ public class ProductoController {
 
     @Autowired
     private IProductoService productoService;
+
+    @Autowired
+    private UploadFileSerivice upload;
 
     @GetMapping("/show/{categoria}")
     public String showProducto(@PathVariable String categoria, Model model, HttpSession session){
@@ -67,12 +70,11 @@ public class ProductoController {
     }
 
     @PostMapping("/save")
-    private String save(Producto producto, HttpSession session){
+    private String save(Producto producto, @RequestParam("image") MultipartFile file) throws IOException {
 
         //Logback
         LOGGER.info("producto del formulario: {}", producto);
-
-        productoService.save(producto);
+        LOGGER.info("file img del formulario: {}", file);
 
         // Google Guava
         ImmutableMap<String, String> productosPorCategoria = ImmutableMap.of(
@@ -86,6 +88,13 @@ public class ProductoController {
                 "fpoder","fuente-poder",
                 "case", "case"
         );
+
+        if (producto.getId()==null) { // cuando se crea un producto
+            String nombreImagen= upload.saveImage(file);
+            producto.setImg(nombreImagen);
+        }
+
+        productoService.save(producto);
 
         String ruta = "redirect:/producto/show/"+productosPorCategoria.get(producto.getCategoria());
 
@@ -127,12 +136,15 @@ public class ProductoController {
     }
 
     @PostMapping("/update")
-    public String update(Producto producto){
+    public String update(Producto producto, @RequestParam("image") MultipartFile file) throws IOException {
 
         //Logback
         LOGGER.info("producto formulario modificar: {}", producto);
 
         String ruta = "";
+
+        Producto p= new Producto();
+        p=productoService.get(producto.getId()).get();
 
         // Google Guava
         ImmutableMap<String, String> productosPorCategoria = ImmutableMap.of(
@@ -146,6 +158,19 @@ public class ProductoController {
                 "fuente-poder","fpoder",
                 "case", "case"
         );
+
+        if (file.isEmpty()) { // editamos el producto pero no cambiamos la imagem
+            producto.setImg(p.getImg());
+
+        }else {// cuando se edita tbn la imagen
+            //eliminar cuando no sea la imagen por defecto
+            if (!p.getImg().equals("default.jpg")) {
+                upload.deleteImage(p.getImg());
+            }
+            String nombreImagen= upload.saveImage(file);
+            producto.setImg(nombreImagen);
+        }
+
 
         producto.setCategoria(productosPorCategoria.get(producto.getCategoria()));
         ruta = "redirect:/producto/show/"+producto.getCategoria();
@@ -174,6 +199,14 @@ public class ProductoController {
                 "fpoder","fuente-poder",
                 "case", "case"
         );
+
+        Producto p= new Producto();
+        p=productoService.get(id).get();
+
+        //eliminar cuando no sea la imagen por defecto
+        if (!p.getImg().equals("default.jpg")) {
+            upload.deleteImage(p.getImg());
+        }
 
 
         productoService.delete(id);

@@ -16,7 +16,7 @@
 
             <h1 class="formularios__titulo">Modificar producto</h1>
 
-            <form th:action="@{/producto/update}"  method="post" class="formularios__form">
+            <form th:action="@{/producto/update}"  method="post" class="formularios__form" enctype="multipart/form-data">
 
                 <div class="formularios__general">
 
@@ -54,7 +54,7 @@
         
                         <div class="formularios__item">
                             <label class="formularios__label">IMG</label>
-                            <input class="formularios__input" type="file" name="img" th:value="${p.img}">
+                            <input class="formularios__input" type="file" name="image" th:value="${p.img}">
                         </div>
                     </div>
 
