@@ -1,10 +1,13 @@
 package com.computec.computec.controller;
 
+import com.computec.computec.model.DetalleProducto;
 import com.computec.computec.model.Producto;
 import com.computec.computec.model.Usuario;
+import com.computec.computec.service.IDetalleProductoService;
 import com.computec.computec.service.IProductoService;
 import com.computec.computec.service.IUsuarioService;
 import com.computec.computec.service.impl.UploadFileSerivice;
+import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import jakarta.servlet.http.HttpSession;
 import org.slf4j.Logger;
@@ -33,6 +36,9 @@ public class ProductoController {
 
     @Autowired
     private UploadFileSerivice upload;
+
+    @Autowired
+    private IDetalleProductoService detalleProductoService;
 
     @GetMapping("/show/{categoria}")
     public String showProducto(@PathVariable String categoria, Model model, HttpSession session){
@@ -66,15 +72,17 @@ public class ProductoController {
 
         model.addAttribute("usuario", session.getAttribute("usuario"));
 
+
         return "producto/crear";
     }
 
     @PostMapping("/save")
-    private String save(Producto producto, @RequestParam("image") MultipartFile file) throws IOException {
+    private String save(Producto producto, DetalleProducto detalleProducto, @RequestParam("image") MultipartFile file) throws IOException {
 
         //Logback
         LOGGER.info("producto del formulario: {}", producto);
         LOGGER.info("file img del formulario: {}", file);
+        LOGGER.info("detalle producto del formulario: {}", detalleProducto);
 
         // Google Guava
         ImmutableMap<String, String> productosPorCategoria = ImmutableMap.of(
@@ -93,6 +101,10 @@ public class ProductoController {
             String nombreImagen= upload.saveImage(file);
             producto.setImg(nombreImagen);
         }
+
+        DetalleProducto dp =  detalleProductoService.save(detalleProducto);
+
+        producto.setDetalleProducto(dp);
 
         productoService.save(producto);
 
