@@ -6,6 +6,7 @@ import com.computec.computec.service.IDetalleProductoService;
 import com.computec.computec.service.IProductoService;
 import com.computec.computec.service.IUsuarioService;
 import com.computec.computec.service.impl.UploadFileSerivice;
+import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import jakarta.servlet.http.HttpSession;
 import org.slf4j.Logger;
@@ -120,10 +121,11 @@ public class ProductoController {
 
         Producto producto = optionalProducto.get();
 
+        DetalleProducto detalleProducto = producto.getDetalleProducto();
+
         //Logback
         LOGGER.info("producto de la base de datos : {}", producto);
 
-        model.addAttribute("p", producto);
 
         String categoria= producto.getCategoria();
 
@@ -140,16 +142,83 @@ public class ProductoController {
                 "case", "case"
         );
 
+        ImmutableList<String> atributosDetalle = null;
+
+        switch (producto.getCategoria()){
+            case "procesador":
+                // Google Guava
+                atributosDetalle = ImmutableList.of("Núcleos", "Hilos", "Frecuencia base", "Frecuencia turbo máxima", "Cache",
+                        "Tipo de memoria", "TDP/TDP predeterminado", "Memoria máxima",
+                        "Gráficos integrados", "Overclocking", "Versión de PCI Express");
+                break;
+            case "ram":
+                // Google Guava
+                atributosDetalle = ImmutableList.of("Capacidad", "Velocidad", "Tipo de memoria", "Latencia CAS",
+                        "Voltaje", "Latencia SPD", "Factor de forma", "Formato", "Temperatura de operación",
+                        "Frecuencia máxima", "RGB");
+                break;
+            case "ssd":
+                // Google Guava
+                atributosDetalle = ImmutableList.of("Capacidad", "Interfaz", "Velocidad de lectura", "Velocidad de escritura",
+                        "Tipo de memoria NAND", "Durabilidad (TBW)", "Consumo de energía",
+                        "Factor de forma", "Encriptación", "MTBF", "Garantía");
+                break;
+            case "hhd":
+                // Google Guava
+                atributosDetalle = ImmutableList.of("Capacidad", "Velocidad de rotación", "Interfaz", "Caché",
+                        "Formato", "Tamaño físico", "Consumo de energía", "Durabilidad",
+                        "Tiempo medio entre fallos (MTBF)", "Tecnología de grabación", "Ruido");
+                break;
+            case "tmadre":
+                // Google Guava
+                atributosDetalle = ImmutableList.of("Socket", "Chipset", "Factores de forma", "Número de slots de RAM",
+                        "Número de puertos USB", "Puertos SATA", "Compatibilidad con PCIe",
+                        "Audio integrado", "Red integrada", "Capacidad de overclocking", "BIOS/UEFI");
+                break;
+            case "tgrafica":
+                // Google Guava
+                atributosDetalle = ImmutableList.of("VRAM", "Tipo de memoria", "Frecuencia del núcleo", "Velocidad de la memoria",
+                        "Núcleos CUDA/Stream processors", "Interfaz", "TDP", "Salidas de video",
+                        "Soporte para ray tracing", "Overclocking", "Dimensiones");
+                break;
+            case "disipador":
+                // Google Guava
+                atributosDetalle = ImmutableList.of("Tipo (aire/líquido)", "Dimensiones", "Compatibilidad", "Rendimiento térmico",
+                        "Nivel de ruido", "Ventiladores incluidos", "Material del radiador",
+                        "Base de contacto", "RGB", "Facilidad de instalación", "Peso");
+                break;
+            case "fpoder":
+                // Google Guava
+                atributosDetalle = ImmutableList.of("Potencia total (W)", "Certificación (80 Plus)", "Número de rieles",
+                        "Conectores disponibles", "Tipo de ventilador", "Tamaño físico",
+                        "Protecciones (OVP, OCP, SCP)", "Modularidad", "Eficiencia",
+                        "Ruido", "MTBF");
+                break;
+            case "case":
+                // Google Guava
+                atributosDetalle = ImmutableList.of("Tipo de caja (ATX, microATX, etc.)", "Dimensiones", "Soporte para refrigeración",
+                        "Espacio para GPU", "Número de bahías para discos", "Materiales",
+                        "Ventiladores incluidos", "Puertos frontales", "Gestión de cables",
+                        "Filtro de polvo", "RGB");
+                break;
+
+        }
+
         model.addAttribute("categoria", productosPorCategoria.get(categoria));
+
+        model.addAttribute("p", producto);
+        model.addAttribute("dp", detalleProducto);
+        model.addAttribute("ad", atributosDetalle);
 
         return "producto/edit";
     }
 
     @PostMapping("/update")
-    public String update(Producto producto, @RequestParam("image") MultipartFile file) throws IOException {
+    public String update(Producto producto, DetalleProducto detalleProducto, @RequestParam("image") MultipartFile file) throws IOException {
 
         //Logback
         LOGGER.info("producto formulario modificar: {}", producto);
+        LOGGER.info("detalle producto formulario modificar: {}", detalleProducto);
 
         String ruta = "";
 
@@ -185,6 +254,13 @@ public class ProductoController {
         producto.setCategoria(productosPorCategoria.get(producto.getCategoria()));
         ruta = "redirect:/producto/show/"+producto.getCategoria();
 
+
+        detalleProductoService.update(detalleProducto);
+
+        DetalleProducto dp = detalleProductoService.get(detalleProducto.getIdDetalleProducto()).get();
+
+        producto.setDetalleProducto(dp);
+
         productoService.update(producto);
 
         return ruta;
@@ -218,8 +294,12 @@ public class ProductoController {
             upload.deleteImage(p.getImg());
         }
 
+        DetalleProducto detalleProducto = p.getDetalleProducto();
 
         productoService.delete(id);
+
+        detalleProductoService.delete(detalleProducto.getIdDetalleProducto());
+
 
         return "redirect:/producto/show/"+productosPorCategoria.get(producto.get().getCategoria());
 

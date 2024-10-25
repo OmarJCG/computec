@@ -10,7 +10,7 @@ import java.util.List;
 public class DetalleProducto {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Integer idDetalleProducto;
 
     private String c1;
     private String c2;
@@ -30,8 +30,8 @@ public class DetalleProducto {
     public DetalleProducto() {
     }
 
-    public DetalleProducto(Integer id, String c1, String c2, String c3, String c4, String c5, String c6, String c7, String c8, String c9, String c10, String c11) {
-        this.id = id;
+    public DetalleProducto(Integer idDetalleProducto, String c1, String c2, String c3, String c4, String c5, String c6, String c7, String c8, String c9, String c10, String c11) {
+        this.idDetalleProducto = idDetalleProducto;
         this.c1 = c1;
         this.c2 = c2;
         this.c3 = c3;
@@ -61,12 +61,12 @@ public class DetalleProducto {
         return values;
     }
 
-    public Integer getId() {
-        return id;
+    public Integer getIdDetalleProducto() {
+        return idDetalleProducto;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setIdDetalleProducto(Integer idDetalleProducto) {
+        this.idDetalleProducto = idDetalleProducto;
     }
 
     public String getC1() {
@@ -168,7 +168,7 @@ public class DetalleProducto {
     @Override
     public String toString() {
         return "DetalleProducto{" +
-                "id=" + id +
+                "id=" + idDetalleProducto +
                 ", c1='" + c1 + '\'' +
                 ", c2='" + c2 + '\'' +
                 ", c3='" + c3 + '\'' +

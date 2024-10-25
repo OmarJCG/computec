@@ -21,17 +21,17 @@ public class DetalleProductoService implements IDetalleProductoService {
 
     @Override
     public Optional<DetalleProducto> get(Integer id) {
-        return null;
+        return detalleProductoDao.findById(id);
     }
 
     @Override
     public void update(DetalleProducto producto) {
-
+        detalleProductoDao.save(producto);
     }
 
     @Override
     public void delete(Integer id) {
-
+        detalleProductoDao.deleteById(id);
     }
 
 

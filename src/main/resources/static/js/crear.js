@@ -18,15 +18,39 @@ document.getElementById("categoria").addEventListener("change", function () {
                 "Tipo de memoria NAND", "Durabilidad (TBW)", "Consumo de energía",
                 "Factor de forma", "Encriptación", "MTBF", "Garantía"
             ],
-            hhd:[""],
-            tmadre:[""],
-            tgrafica:[""],
-            disipador:[""],
-            fpoder:[""],
-            case:[""]
-            // Agrega más categorías y detalles según sea necesario
+            hhd: [
+                "Capacidad", "Velocidad de rotación", "Interfaz", "Caché",
+                "Formato", "Tamaño físico", "Consumo de energía", "Durabilidad",
+                "Tiempo medio entre fallos (MTBF)", "Tecnología de grabación", "Ruido"
+            ],
+            tmadre: [
+                "Socket", "Chipset", "Factores de forma", "Número de slots de RAM",
+                "Número de puertos USB", "Puertos SATA", "Compatibilidad con PCIe",
+                "Audio integrado", "Red integrada", "Capacidad de overclocking", "BIOS/UEFI"
+            ],
+            tgrafica: [
+                "VRAM", "Tipo de memoria", "Frecuencia del núcleo", "Velocidad de la memoria",
+                "Núcleos CUDA/Stream processors", "Interfaz", "TDP", "Salidas de video",
+                "Soporte para ray tracing", "Overclocking", "Dimensiones"
+            ],
+            disipador: [
+                "Tipo (aire/líquido)", "Dimensiones", "Compatibilidad", "Rendimiento térmico",
+                "Nivel de ruido", "Ventiladores incluidos", "Material del radiador",
+                "Base de contacto", "RGB", "Facilidad de instalación", "Peso"
+            ],
+            fpoder: [
+                "Potencia total (W)", "Certificación (80 Plus)", "Número de rieles",
+                "Conectores disponibles", "Tipo de ventilador", "Tamaño físico",
+                "Protecciones (OVP, OCP, SCP)", "Modularidad", "Eficiencia",
+                "Ruido", "MTBF"
+            ],
+            case: [
+                "Tipo de caja (ATX, microATX, etc.)", "Dimensiones", "Soporte para refrigeración",
+                "Espacio para GPU", "Número de bahías para discos", "Materiales",
+                "Ventiladores incluidos", "Puertos frontales", "Gestión de cables",
+                "Filtro de polvo", "RGB"
+            ]
         };
-
     // Selecciona todos los labels correspondientes a los detalles
     const labels = document.querySelectorAll(".formularios__detalleContainer .formularios__label");
 
