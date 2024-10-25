@@ -25,21 +25,31 @@
                 <h2 class="info__title" th:text="${p.marca}+' '+${p.modelo}"></h2>
                 <p class="info__precio" th:text="'S/'+' '+ ${p.precio}"></p>
 
-                <div class="info__opciones">
-                    <div class="info__opcion">
-                        <i class="ri-caravan-line"></i>
-                        <p class="info__opcion-texto">Despacho a domicilio</p>
+                <form action="">
+                    <div class="info__opciones">
+                        <div class="info__opcion">
+                            <i class="ri-caravan-line"></i>
+                            <p class="info__opcion-texto">Despacho a domecilio</p>
+                        </div>
+
+                        <div class="info__opcion">
+                            <i class="ri-store-2-line"></i>
+                            <p class="info__opcion-texto">Retira en tienda</p>
+                        </div>
                     </div>
 
-                    <div class="info__opcion">
-                        <i class="ri-store-2-line"></i>
-                        <p class="info__opcion-texto">Retira en tienda</p>
-                    </div>
-                </div>
+                    <li class="info__cantidad">
+                        <h6 class="info__h6cantidad">
+                            Cantidad:
+                            <input class="info__inputcantidad" type="number" id="cantidad" name="cantidad" autocomplete="off" min="1" th:max="${p.stock}" value="1">
+                        </h6>
+                        <p class="info__maximo" th:text="Maximo+' '+${p.stock}+' '+unidades"></p>
+                    </li>
 
-                <div class="info__accion">
-                    <a class="button">Agregar al Carrito</a>
-                </div>
+                    <div class="info__accion">
+                        <button type="submit" class="button">Agregar al Carrito</button>
+                    </div>
+                </form>
             </div>
         </section>
 

@@ -224,7 +224,6 @@ button:hover{
     display: grid;
     grid-template-columns: 1fr 1fr;
     height: 650px;
-    gap: 1rem;
 }
 
 .info__figure {
@@ -246,7 +245,7 @@ button:hover{
     display: flex;
     flex-direction: column;
     justify-content: center;
-    row-gap: 1rem;
+    row-gap: .5rem;
 }
 
 .info__title {
@@ -275,7 +274,7 @@ button:hover{
 
 .info__opciones {
     border: 1px solid var(--first-color-alt);
-    padding: 2.5rem 0 1rem;
+    padding: 2rem 0 .5rem;
     width: 70%;
     margin-inline: auto;
     display: flex;
@@ -299,6 +298,33 @@ button:hover{
 
 .info__accion {
     padding-top: 1rem;
+}
+
+.info__cantidad{
+    display: flex;
+    gap: .5rem;
+    margin-top: 1.5rem;
+}
+
+
+.info__h6cantidad{
+    font-size: 1rem;
+    font-weight: bold;
+    color: var(--first-color-alt);
+}
+
+.info__inputcantidad{
+    width: 50px;
+    padding: .3rem .5rem;
+    outline: none;
+    font-weight: bold;
+    border-radius: .5rem;
+    border: 1px solid var(--text-color);
+}
+
+.info__maximo{
+    opacity: .8;
+    font-size: .9rem;
 }
 
 .button {
