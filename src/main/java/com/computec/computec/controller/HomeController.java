@@ -1,6 +1,8 @@
 package com.computec.computec.controller;
 
+import com.computec.computec.model.DetalleOrden;
 import com.computec.computec.model.DetalleProducto;
+import com.computec.computec.model.Orden;
 import com.computec.computec.model.Producto;
 import com.computec.computec.service.IDetalleProductoService;
 import com.computec.computec.service.IProductoService;
@@ -12,12 +14,11 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 
 @Controller
@@ -31,6 +32,12 @@ public class HomeController {
 
     @Autowired
     private IDetalleProductoService detalleProductoService;
+
+    //Para almacenar detalle de la orden
+    List<DetalleOrden> detalles = new ArrayList<DetalleOrden>();
+
+    //datos de la orden
+    Orden orden = new Orden();
 
     @GetMapping("")
     public String home(Model model, HttpSession session) {
@@ -154,7 +161,17 @@ public class HomeController {
 
 
     @PostMapping("/cart")
-    public String showCarrito(){
+    public String showCarrito(@RequestParam Integer id, @RequestParam Integer cantidad, Model model, HttpSession session){
+        model.addAttribute("usuario", session.getAttribute("usuario"));
+
+        DetalleOrden detalleOrden  = new DetalleOrden();
+        Producto producto = new Producto();
+
+        Optional<Producto> optionalProducto = productoService.get(id);
+
+        LOGGER.info("producto para carrito: {}", optionalProducto.get());
+        LOGGER.info("cantidad: {}", cantidad);
+
         return "usuario/carrito";
     }
 

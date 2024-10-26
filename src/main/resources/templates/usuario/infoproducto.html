@@ -26,6 +26,7 @@
                 <p class="info__precio" th:text="'S/'+' '+ ${p.precio}"></p>
 
                 <form th:action="@{/cart}" method="post">
+                    <input type="hidden" th:value="${p.id}" name="id">
                     <div class="info__opciones">
                         <div class="info__opcion">
                             <i class="ri-caravan-line"></i>
