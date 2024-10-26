@@ -258,4 +258,14 @@ public class HomeController {
         return "/usuario/carrito";
     }
 
+    @GetMapping("/order")
+    public String order(Model model, HttpSession session) {
+
+        //model.addAttribute("cart", detalles);
+        //model.addAttribute("orden", orden);
+        //model.addAttribute("usuario", session.getAttribute("usuario"));
+
+        return "usuario/detalleorden";
+    }
+
 }

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.2.0/remixicon.min.css" rel="stylesheet" />
+    <link rel="stylesheet" th:href="@{/css/detalleorden.css}">
+    <link rel="shortcut icon" th:href="@{/assets/logo.svg}" type="image/x-icon">
+    <title>Document</title>
+</head>
+<body>
+<div th:insert="~{usuario/template_usuario.html::menu}" th:if="${usuario==null}"></div>
+
+<div th:insert="~{usuario/template_usuario.html::header}" th:unless="${usuario==null}"></div>
+
+    <main class="main container">
+        <section class="orden section">
+
+            <h1 class="orden__title">Detalles de la orden</h1>
+
+            <div class="orden__datos">
+
+                <div>
+                    <h2 class="orden__h2">Datos de la orden</h2>
+                    <div class="orden__dato orden__nombre">
+                        <b>Nombre:</b>
+                        <b class="orden__user">Omar jesus Carrasco Guerrero</b>
+                    </div>
+    
+                    <div class="orden__dato orden__correo">
+                        <b>Correo:</b>
+                        <b class="orden__user">omarcarrascoguerrero@gmail.com</b>
+                    </div>
+                </div>
+
+                <div class="orden__button">
+                    <a href="" class="orden__a">Generar detalla orden</a>
+                </div>
+
+            </div>
+
+            <div class="orden__detalle">
+                <table class="producto__table">
+                    <thead>
+                        <tr>
+                            <th>Imagen</th>
+                            <th>Producto</th>
+                            <th>Precio</th>
+                            <th>Cantidad</th>
+                            <th>Total</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><img src="../../assets/inicio/procesador.jpeg" alt=""></td>
+                            <td>Intel I5-14600K</td>
+                            <td>S/. 986.56</td>
+                            <td>2</td>
+                            <td>S/. 1234.55</td>
+                        </tr>
+                        <tr>
+                            <td><img src="../../assets/inicio/procesador.jpeg" alt=""></td>
+                            <td>Intel I5-14600K</td>
+                            <td>S/. 986.56</td>
+                            <td>2</td>
+                            <td>S/. 1234.55</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+
+<div th:insert="~{usuario/template_usuario.html::footer}"></div>
+
+</body>
+</html>
