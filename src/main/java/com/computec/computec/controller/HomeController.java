@@ -261,9 +261,9 @@ public class HomeController {
     @GetMapping("/order")
     public String order(Model model, HttpSession session) {
 
-        //model.addAttribute("cart", detalles);
-        //model.addAttribute("orden", orden);
-        //model.addAttribute("usuario", session.getAttribute("usuario"));
+        model.addAttribute("cart", detalles);
+        model.addAttribute("orden", orden);
+        model.addAttribute("usuario", session.getAttribute("usuario"));
 
         return "usuario/detalleorden";
     }

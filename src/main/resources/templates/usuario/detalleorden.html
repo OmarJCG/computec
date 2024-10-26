@@ -24,12 +24,17 @@
                     <h2 class="orden__h2">Datos de la orden</h2>
                     <div class="orden__dato orden__nombre">
                         <b>Nombre:</b>
-                        <b class="orden__user">Omar jesus Carrasco Guerrero</b>
+                        <b class="orden__user" th:text="${usuario.nombre}+' '+ ${usuario.apellido}"></b>
                     </div>
     
-                    <div class="orden__dato orden__correo">
+                    <div class="orden__dato orden__nombre">
                         <b>Correo:</b>
-                        <b class="orden__user">omarcarrascoguerrero@gmail.com</b>
+                        <b class="orden__user" th:text="${usuario.correo}"></b>
+                    </div>
+
+                    <div class="orden__dato orden__correo">
+                        <b>Dirección:</b>
+                        <b class="orden__user" th:text="${usuario.calle}+' , '+${usuario.distrito}+' , '+${usuario.provincia}+' , '+${usuario.departamento}"></b>
                     </div>
                 </div>
 
@@ -52,19 +57,12 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td><img src="../../assets/inicio/procesador.jpeg" alt=""></td>
-                            <td>Intel I5-14600K</td>
-                            <td>S/. 986.56</td>
-                            <td>2</td>
-                            <td>S/. 1234.55</td>
-                        </tr>
-                        <tr>
-                            <td><img src="../../assets/inicio/procesador.jpeg" alt=""></td>
-                            <td>Intel I5-14600K</td>
-                            <td>S/. 986.56</td>
-                            <td>2</td>
-                            <td>S/. 1234.55</td>
+                        <tr th:each="do:${cart}">
+                            <td><img th:src="@{/images/{img} (img=${do.img})}" alt=""></td>
+                            <td th:text="${do.nombre}"></td>
+                            <td th:text="'S/.' + ${do.precio}"></td>
+                            <td th:text="${do.cantidad}"></td>
+                            <td th:text="'S/.' + ${do.total}"></td>
                         </tr>
                     </tbody>
                 </table>
