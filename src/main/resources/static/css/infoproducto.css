@@ -224,6 +224,7 @@ button:hover{
     display: grid;
     grid-template-columns: 1fr 1fr;
     height: 650px;
+    gap:1rem;
 }
 
 .info__figure {
@@ -245,11 +246,11 @@ button:hover{
     display: flex;
     flex-direction: column;
     justify-content: center;
-    row-gap: .5rem;
+    row-gap: 1.5rem;
 }
 
 .info__title {
-    font-size: 2.5rem;
+    font-size: 2.25rem;
     position: relative;
     padding-top: 1rem;
 }
@@ -303,7 +304,7 @@ button:hover{
 .info__cantidad{
     display: flex;
     gap: .5rem;
-    margin-top: 1.5rem;
+    margin: 2rem 0 .5rem;
 }
 
 

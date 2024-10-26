@@ -19,28 +19,28 @@
             <section class="carrito">
                 <h2 class="cuerpo__title">Carrito de compras</h2>
 
-                <div class="carrito__item">
+                <div class="carrito__item" th:each="do:${cart}">
                     <div class="carrito__hijo ">
                         
                         <a href="#">
-                            <img class="carrito__img" src="../../assets/producto/p1.jpeg" alt="">
+                            <img class="carrito__img" th:src="@{/images/{img} (img=${do.img})}" alt="">
                         </a>
                     </div>
                     <div class="carrito__hijo carrito__ceter">
-                        <p class="carrito__info">Intel core I139690r</p>
+                        <p class="carrito__info" th:text="${do.nombre}"></p>
                     </div>
                     <div class="carrito__hijo carrito__ceter">
-                        <p class="carrito__precio">10</p>
+                        <p class="carrito__precio" th:text="'S/'+' '+${do.precio}"></p>
                     </div>
                     <div class="carrito__hijo carrito__ceter">
                         <div class="carrito__bottons">
-                            <button  class="menos">-</button>
-                            <input type="number" readonly value="1" class="cantidad">
-                            <button class="mas">+</button>
+                            <button style="display: none"  class="menos">-</button>
+                            <input type="number" readonly th:value="${do.cantidad}" class="cantidad">
+                            <button style="display: none" class="mas">+</button>
                         </div>
                     </div>
                     <div class="carrito__hijo carrito__ceter">
-                        <p class="carrito__total"></p>
+                        <p class="carrito__total" th:text="'S/'+' '+${do.total}"></p>
                     </div>
 
                     <div class="carrito__hijo carrito__ceter">
@@ -51,69 +51,6 @@
                     </div>
                 </div>
 
-                <div class="carrito__item">
-                    <div class="carrito__hijo ">
-                        
-                        <a href="#">
-                            <img class="carrito__img" src="../../assets/producto/p1.jpeg" alt="">
-                        </a>
-                    </div>
-                    <div class="carrito__hijo carrito__ceter">
-                        <p class="carrito__info">Intel core I139690r</p>
-                    </div>
-                    <div class="carrito__hijo carrito__ceter">
-                        <p class="carrito__precio">20</p>
-                    </div>
-                    <div class="carrito__hijo carrito__ceter">
-                        <div class="carrito__bottons">
-                            <button  class="menos">-</button>
-                            <input type="number" readonly value="1" class="cantidad">
-                            <button class="mas">+</button>
-                        </div>
-                    </div>
-                    <div class="carrito__hijo carrito__ceter">
-                        <p class="carrito__total">2000</p>
-                    </div>
-
-                    <div class="carrito__hijo carrito__ceter">
-                    <form method="POST">
-                        <input type="hidden" name="idcarrito" value="">
-                        <button class="eliminar" name="accion" value="eliminar">X</button>
-                    </form>
-                    </div>
-                </div>
-
-                <div class="carrito__item">
-                    <div class="carrito__hijo ">
-                        
-                        <a href="#">
-                            <img class="carrito__img" src="../../assets/producto/p1.jpeg" alt="">
-                        </a>
-                    </div>
-                    <div class="carrito__hijo carrito__ceter">
-                        <p class="carrito__info">Intel core I139690r</p>
-                    </div>
-                    <div class="carrito__hijo carrito__ceter">
-                        <p class="carrito__precio">20</p>
-                    </div>
-                    <div class="carrito__hijo carrito__ceter">
-                        <div class="carrito__bottons">
-                            <button  class="menos">-</button>
-                            <input type="number" readonly value="1" class="cantidad">
-                            <button class="mas">+</button>
-                        </div>
-                    </div>
-                    <div class="carrito__hijo carrito__ceter">
-                        <p class="carrito__total">2000</p>
-                    </div>
-
-                    <div class="carrito__hijo carrito__ceter">
-                    <form method="POST">
-                        <input type="hidden" name="idcarrito" value="">
-                        <button class="eliminar" name="accion" value="eliminar">X</button>
-                    </form>
-                    </div>
-                </div>
                 
             </section>
 
@@ -122,15 +59,19 @@
                 <div class="resumen__container">
                     <div class="resumen__item">
                         <p class="resumen__productos">Productos</p>
-                        <p class="total__productos"></p>
+                        <p class="total__productos" th:text="${sumacantidad}"></p>
                     </div>
                     <div class="resumen__item">
                         <p class="resumen__subtotal">Subtotal</p>
-                        <p class="subtotal"></p>
+                        <p class="subtotal" th:text="${orden.total}"></p>
                     </div>
                     <div class="resumen__item">
-                        <p class="resumen__total">total</p>
-                        <p class="total"></p>
+                        <p class="resumen__descuento">Descuento</p>
+                        <p class="descuento">0</p>
+                    </div>
+                    <div class="resumen__item">
+                        <p class="resumen__total" >total</p>
+                        <p class="total" th:text="${orden.total}"></p>
                     </div>
                 </div>
 
@@ -144,6 +85,5 @@
 
 <div th:insert="~{usuario/template_usuario.html::footer}"></div>
 
-<script th:src="@{/js/carrito.js}"></script>
 </body>
 </html>

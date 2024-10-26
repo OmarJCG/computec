@@ -16,6 +16,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -166,11 +167,41 @@ public class HomeController {
 
         DetalleOrden detalleOrden  = new DetalleOrden();
         Producto producto = new Producto();
+        double sumaTotal = 0;
 
         Optional<Producto> optionalProducto = productoService.get(id);
 
         LOGGER.info("producto para carrito: {}", optionalProducto.get());
         LOGGER.info("cantidad: {}", cantidad);
+
+        producto = optionalProducto.get();
+
+        DecimalFormat df = new DecimalFormat("#.00");
+
+        double precio = Double.valueOf(df.format(producto.getPrecio()));
+        double total = Double.valueOf(df.format(producto.getPrecio()*cantidad));
+
+        detalleOrden.setNombre(producto.getMarca() + " "+ producto.getModelo());
+        detalleOrden.setCantidad(cantidad);
+        detalleOrden.setPrecio( precio);
+        detalleOrden.setTotal(total);
+        detalleOrden.setProducto(producto);
+        detalleOrden.setImg(producto.getImg());
+
+
+        detalles.add(detalleOrden);
+
+        sumaTotal = detalles.stream().mapToDouble(dt -> dt.getTotal()).sum();
+        int sumaCantidad = detalles.stream().mapToInt(dt -> dt.getCantidad()).sum();
+
+
+
+        orden.setTotal(Double.valueOf(df.format(sumaTotal)));
+
+        model.addAttribute("p", producto);
+        model.addAttribute("cart", detalles);
+        model.addAttribute("sumacantidad", sumaCantidad);
+        model.addAttribute("orden", orden);
 
         return "usuario/carrito";
     }
