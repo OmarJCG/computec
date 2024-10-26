@@ -25,7 +25,7 @@
                 <h2 class="info__title" th:text="${p.marca}+' '+${p.modelo}"></h2>
                 <p class="info__precio" th:text="'S/'+' '+ ${p.precio}"></p>
 
-                <form action="">
+                <form th:action="@{/cart}" method="post">
                     <div class="info__opciones">
                         <div class="info__opcion">
                             <i class="ri-caravan-line"></i>

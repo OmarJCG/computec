@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.2.0/remixicon.min.css" rel="stylesheet" />
+    <link rel="stylesheet" th:href="@{/css/carrito.css}">
+    <link rel="shortcut icon" th:href="@{/assets/logo.svg}" type="image/x-icon">
+    <title>Document</title>
+</head>
+<body>
+<div th:insert="~{usuario/template_usuario.html::menu}" th:if="${usuario==null}"></div>
+
+<div th:insert="~{usuario/template_usuario.html::header}" th:unless="${usuario==null}"></div>
+
+    <main class="main container">
+        <section class="cuerpo section">
+            
+            <section class="carrito">
+                <h2 class="cuerpo__title">Carrito de compras</h2>
+
+                <div class="carrito__item">
+                    <div class="carrito__hijo ">
+                        
+                        <a href="#">
+                            <img class="carrito__img" src="../../assets/producto/p1.jpeg" alt="">
+                        </a>
+                    </div>
+                    <div class="carrito__hijo carrito__ceter">
+                        <p class="carrito__info">Intel core I139690r</p>
+                    </div>
+                    <div class="carrito__hijo carrito__ceter">
+                        <p class="carrito__precio">10</p>
+                    </div>
+                    <div class="carrito__hijo carrito__ceter">
+                        <div class="carrito__bottons">
+                            <button  class="menos">-</button>
+                            <input type="number" readonly value="1" class="cantidad">
+                            <button class="mas">+</button>
+                        </div>
+                    </div>
+                    <div class="carrito__hijo carrito__ceter">
+                        <p class="carrito__total"></p>
+                    </div>
+
+                    <div class="carrito__hijo carrito__ceter">
+                    <form method="POST">
+                        <input type="hidden" name="idcarrito" value="">
+                        <button class="eliminar" name="accion" value="eliminar">X</button>
+                    </form>
+                    </div>
+                </div>
+
+                <div class="carrito__item">
+                    <div class="carrito__hijo ">
+                        
+                        <a href="#">
+                            <img class="carrito__img" src="../../assets/producto/p1.jpeg" alt="">
+                        </a>
+                    </div>
+                    <div class="carrito__hijo carrito__ceter">
+                        <p class="carrito__info">Intel core I139690r</p>
+                    </div>
+                    <div class="carrito__hijo carrito__ceter">
+                        <p class="carrito__precio">20</p>
+                    </div>
+                    <div class="carrito__hijo carrito__ceter">
+                        <div class="carrito__bottons">
+                            <button  class="menos">-</button>
+                            <input type="number" readonly value="1" class="cantidad">
+                            <button class="mas">+</button>
+                        </div>
+                    </div>
+                    <div class="carrito__hijo carrito__ceter">
+                        <p class="carrito__total">2000</p>
+                    </div>
+
+                    <div class="carrito__hijo carrito__ceter">
+                    <form method="POST">
+                        <input type="hidden" name="idcarrito" value="">
+                        <button class="eliminar" name="accion" value="eliminar">X</button>
+                    </form>
+                    </div>
+                </div>
+
+                <div class="carrito__item">
+                    <div class="carrito__hijo ">
+                        
+                        <a href="#">
+                            <img class="carrito__img" src="../../assets/producto/p1.jpeg" alt="">
+                        </a>
+                    </div>
+                    <div class="carrito__hijo carrito__ceter">
+                        <p class="carrito__info">Intel core I139690r</p>
+                    </div>
+                    <div class="carrito__hijo carrito__ceter">
+                        <p class="carrito__precio">20</p>
+                    </div>
+                    <div class="carrito__hijo carrito__ceter">
+                        <div class="carrito__bottons">
+                            <button  class="menos">-</button>
+                            <input type="number" readonly value="1" class="cantidad">
+                            <button class="mas">+</button>
+                        </div>
+                    </div>
+                    <div class="carrito__hijo carrito__ceter">
+                        <p class="carrito__total">2000</p>
+                    </div>
+
+                    <div class="carrito__hijo carrito__ceter">
+                    <form method="POST">
+                        <input type="hidden" name="idcarrito" value="">
+                        <button class="eliminar" name="accion" value="eliminar">X</button>
+                    </form>
+                    </div>
+                </div>
+                
+            </section>
+
+            <section class="resumen">
+                <h2 class="cuerpo__title">Resumen</h2>
+                <div class="resumen__container">
+                    <div class="resumen__item">
+                        <p class="resumen__productos">Productos</p>
+                        <p class="total__productos"></p>
+                    </div>
+                    <div class="resumen__item">
+                        <p class="resumen__subtotal">Subtotal</p>
+                        <p class="subtotal"></p>
+                    </div>
+                    <div class="resumen__item">
+                        <p class="resumen__total">total</p>
+                        <p class="total"></p>
+                    </div>
+                </div>
+
+                <div class="resumen__button">
+                    <button>continuar compra</button>
+                </div>
+            </section>
+        </section>
+
+    </main>
+
+<div th:insert="~{usuario/template_usuario.html::footer}"></div>
+
+<script th:src="@{/js/carrito.js}"></script>
+</body>
+</html>
