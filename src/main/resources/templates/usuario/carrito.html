@@ -46,7 +46,7 @@
                     <div class="carrito__hijo carrito__ceter">
                     <form method="POST">
                         <input type="hidden" name="idcarrito" value="">
-                        <button class="eliminar" name="accion" value="eliminar">X</button>
+                        <a class="eliminar" th:href="@{/delete/cart/{id}   (id=${do.producto.id}) }" >X</a>
                     </form>
                     </div>
                 </div>

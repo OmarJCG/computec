@@ -278,6 +278,8 @@ ul{
 }
 
 .eliminar{
+    display:inline-block;
+    line-height: 40px;
     width: 40px;
     height: 40px;
     background-color: rgb(168, 0, 0);
