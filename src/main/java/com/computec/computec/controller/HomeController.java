@@ -1,10 +1,9 @@
 package com.computec.computec.controller;
 
-import com.computec.computec.model.DetalleOrden;
-import com.computec.computec.model.DetalleProducto;
-import com.computec.computec.model.Orden;
-import com.computec.computec.model.Producto;
+import com.computec.computec.model.*;
+import com.computec.computec.service.IDetalleOrdenService;
 import com.computec.computec.service.IDetalleProductoService;
+import com.computec.computec.service.IOrdenService;
 import com.computec.computec.service.IProductoService;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
@@ -18,6 +17,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -33,6 +33,12 @@ public class HomeController {
 
     @Autowired
     private IDetalleProductoService detalleProductoService;
+
+    @Autowired
+    private IOrdenService ordenService;
+
+    @Autowired
+    private IDetalleOrdenService detalleOrdenService;
 
     //Para almacenar detalle de la orden
     List<DetalleOrden> detalles = new ArrayList<DetalleOrden>();
@@ -266,6 +272,51 @@ public class HomeController {
         model.addAttribute("usuario", session.getAttribute("usuario"));
 
         return "usuario/detalleorden";
+    }
+
+    // guardar la orden
+    @GetMapping("/saveOrder")
+    public String saveOrder(HttpSession session ) {
+
+        Date fechaCreacion = new Date();
+        orden.setFechaCreacion(fechaCreacion);
+        orden.setNumero(ordenService.generarNumeroOrden());
+
+        //usuario
+        orden.setUsuario((Usuario) session.getAttribute("usuario"));
+        ordenService.save(orden);
+
+        //guardar detalles
+        for (DetalleOrden dt:detalles) {
+            dt.setOrden(orden);
+            detalleOrdenService.save(dt);
+        }
+
+        ///limpiar lista y orden
+        orden = new Orden();
+        detalles.clear();
+
+        return "redirect:/";
+    }
+
+    @GetMapping("/confimarcompra")
+    public String confimarCompra(Model model, HttpSession session){
+
+        model.addAttribute("usuario", session.getAttribute("usuario"));
+
+        model.addAttribute("cart", detalles);
+        model.addAttribute("orden", orden);
+
+        int sumaCantidad = detalles.stream().mapToInt(dt -> dt.getCantidad()).sum();
+        model.addAttribute("sumacantidad", sumaCantidad);
+
+        String confirmarshow = "confirmarshow";
+        String noscroll = "noscroll";
+
+        model.addAttribute("confirmarshow", confirmarshow);
+        model.addAttribute("noscroll", noscroll);
+
+        return "usuario/carrito";
     }
 
 }

@@ -1,6 +1,7 @@
 package com.computec.computec.model;
 
 import jakarta.persistence.*;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
 import java.util.List;
@@ -14,6 +15,9 @@ public class Orden {
     private Integer id;
 
     private String numero;
+
+    @Temporal(TemporalType.DATE)
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date fechaCreacion;
     private double total;
 

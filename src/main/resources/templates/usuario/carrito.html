@@ -8,7 +8,20 @@
     <link rel="shortcut icon" th:href="@{/assets/logo.svg}" type="image/x-icon">
     <title>Document</title>
 </head>
-<body>
+<body th:class="${noscroll}">
+
+<div th:class="confirmar + ' ' + ${confirmarshow}">
+    <div class="confirmar__content">
+        <h2 class="confirmar__title">Confirmar la compra</h2>
+        <p class="confirmar__pregunta">¿Estás seguro de realizar la compra?</p>
+
+        <div class="confirmar__buttons">
+            <a class="confirmar__button confirmar__cancelar" th:href="@{/getCart}" >Cancelar la compra</a>
+            <a class="confirmar__button confirmar__compra" th:href="@{/saveOrder}">Realizar la compra</a>
+        </div>
+    </div>
+</div>
+
 <div th:insert="~{usuario/template_usuario.html::menu}" th:if="${usuario==null}"></div>
 
 <div th:insert="~{usuario/template_usuario.html::header}" th:unless="${usuario==null}"></div>
@@ -76,7 +89,7 @@
                 </div>
 
                 <div class="resumen__button">
-                    <a th:href="@{/order}">continuar compra</a>
+                    <a th:href="@{/confimarcompra}">Generar compra</a>
                 </div>
             </section>
         </section>
