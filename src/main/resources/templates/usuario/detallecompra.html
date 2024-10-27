@@ -16,12 +16,12 @@
     <main class="main container">
         <section class="orden section">
 
-            <h1 class="orden__title">Detalles de la orden</h1>
+            <h1 class="orden__title">Detalles de la compra</h1>
 
             <div class="orden__datos">
 
                 <div>
-                    <h2 class="orden__h2">Datos de la orden</h2>
+                    <h2 class="orden__h2">Datos de la compra</h2>
                     <div class="orden__dato orden__nombre">
                         <b>Nombre:</b>
                         <b class="orden__user" th:text="${usuario.nombre}+' '+ ${usuario.apellido}"></b>
@@ -57,12 +57,12 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr th:each="do:${cart}">
-                            <td><img th:src="@{/images/{img} (img=${do.img})}" alt=""></td>
-                            <td th:text="${do.nombre}"></td>
-                            <td th:text="'S/.' + ${do.precio}"></td>
-                            <td th:text="${do.cantidad}"></td>
-                            <td th:text="'S/.' + ${do.total}"></td>
+                        <tr th:each="d:${detalles}">
+                            <td><img th:src="@{/images/{img} (img=${d.img})}" alt=""></td>
+                            <td th:text="${d.nombre}"></td>
+                            <td th:text="'S/.' + ${d.precio}"></td>
+                            <td th:text="${d.cantidad}"></td>
+                            <td th:text="'S/.' + ${d.total}"></td>
                         </tr>
                     </tbody>
                 </table>

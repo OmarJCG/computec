@@ -24,11 +24,12 @@ public class OrdenService implements IOrdenService {
 
     @Override
     public Optional<Orden> findById(Integer id) {
-        return Optional.empty();
+        return ordenDao.findById(id);
     }
 
     @Override
     public Orden save(Orden orden) {
+
         return ordenDao.save(orden);
     }
 

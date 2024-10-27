@@ -32,7 +32,7 @@
                             <td th:text="${o.numero}"></td>
                             <td th:text="${o.fechaCreacion}"></td>
                             <td th:text="'S/.' + ${o.total}"></td>
-                            <td><a href="#" class="modificar">Ver detalle</a></td>
+                            <td><a th:href="@{/usuario/detalle/{id} (id=${o.id})}" class="modificar">Ver detalle</a></td>
                         </tr>
                     </tbody>
                 </table>
