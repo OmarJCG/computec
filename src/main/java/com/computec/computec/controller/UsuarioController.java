@@ -3,6 +3,7 @@ package com.computec.computec.controller;
 
 import com.computec.computec.dao.IOrdenDao;
 import com.computec.computec.model.Contra;
+import com.computec.computec.model.DetalleOrden;
 import com.computec.computec.model.Orden;
 import com.computec.computec.model.Usuario;
 import com.computec.computec.service.IOrdenService;
@@ -19,6 +20,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -35,6 +37,9 @@ public class UsuarioController {
 
     @Autowired
     private IOrdenService ordenService;
+
+    @Autowired
+    private HomeController homeController;
 
     @GetMapping("/registro")
     public String create(){
@@ -86,7 +91,12 @@ public class UsuarioController {
 
     @GetMapping("/cerrar")
     public String cerrarSesion( HttpSession session ) {
+
+        homeController.setDetalles(new ArrayList<DetalleOrden>());
+        homeController.setOrden(new Orden());
         session.removeAttribute("usuario");
+
+
         return "redirect:/";
     }
 

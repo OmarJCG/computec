@@ -26,7 +26,13 @@
                         <p class="card__nombre" th:text="${p.marca}+' '+${p.modelo}"></p>
                         <p class="card__precio" th:text="'S/'+' '+ ${p.precio}"></p>
                         <a th:href="@{/info-producto/{id} (id=${p.id})}" class="card__button card__button-info">ver info</a>
-                        <a href="" class="card__button card__button-comprar">Agregar al carrito</a>
+
+                        <form th:action="@{/cart}" method="post">
+                            <input type="hidden" th:value="${p.id}" name="id">
+                            <input type="hidden" value="1" name="cantidad">
+                            <button type="submit" class="card__button card__button-comprar">Agregar al carrito</button>
+                        </form>
+
                     </div>
 
                 </div>

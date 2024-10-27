@@ -268,7 +268,7 @@ ul{
     display: block;
     width: 90%;
     margin-bottom: 1rem;
-    padding: .5rem;
+    padding: .5rem 0;
     border-radius: 2rem;
     color: var(--body-color);
     border: none;

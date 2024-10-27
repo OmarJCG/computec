@@ -40,6 +40,7 @@ public class HomeController {
     @Autowired
     private IDetalleOrdenService detalleOrdenService;
 
+
     //Para almacenar detalle de la orden
     List<DetalleOrden> detalles = new ArrayList<DetalleOrden>();
 
@@ -47,6 +48,15 @@ public class HomeController {
     Orden orden = new Orden();
 
     DecimalFormat df = new DecimalFormat("#.00");
+
+
+    public void setDetalles(List<DetalleOrden> detalles) {
+        this.detalles = detalles;
+    }
+
+    public void setOrden(Orden orden) {
+        this.orden = orden;
+    }
 
     @GetMapping("")
     public String home(Model model, HttpSession session) {
@@ -171,6 +181,7 @@ public class HomeController {
 
     @PostMapping("/cart")
     public String addCarrito(@RequestParam Integer id, @RequestParam Integer cantidad, Model model, HttpSession session){
+
         model.addAttribute("usuario", session.getAttribute("usuario"));
 
         DetalleOrden detalleOrden  = new DetalleOrden();
@@ -301,6 +312,13 @@ public class HomeController {
 
     @GetMapping("/confimarcompra")
     public String confimarCompra(Model model, HttpSession session){
+
+        Usuario usuario = (Usuario) session.getAttribute("usuario");
+
+        if (usuario==null){
+            return "redirect:/usuario/login";
+        }
+
 
         model.addAttribute("usuario", session.getAttribute("usuario"));
 
