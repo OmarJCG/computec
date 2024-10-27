@@ -1,8 +1,11 @@
 package com.computec.computec.controller;
 
 
+import com.computec.computec.dao.IOrdenDao;
 import com.computec.computec.model.Contra;
+import com.computec.computec.model.Orden;
 import com.computec.computec.model.Usuario;
+import com.computec.computec.service.IOrdenService;
 import com.computec.computec.service.IUsuarioService;
 import jakarta.servlet.http.HttpSession;
 import org.slf4j.Logger;
@@ -15,6 +18,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.util.List;
 import java.util.Optional;
 
 @Controller
@@ -27,6 +31,9 @@ public class UsuarioController {
 
     @Autowired
     private IUsuarioService usuarioService;
+
+    @Autowired
+    private IOrdenService ordenService;
 
     @GetMapping("/registro")
     public String create(){
@@ -113,5 +120,19 @@ public class UsuarioController {
         redirectAttributes.addFlashAttribute("error", error);
 
         return  "redirect:/usuario/show-contra";
+    }
+
+    @GetMapping("/compras")
+    public String obtenerCompras(Model model, HttpSession session) {
+        model.addAttribute("usuario", session.getAttribute("usuario"));
+
+        Usuario usuario= (Usuario) session.getAttribute("usuario");
+
+        List<Orden> ordenes= ordenService.findByUsuario(usuario);
+        LOGGER.info("ordenes {}", ordenes);
+
+        model.addAttribute("ordenes", ordenes);
+
+        return "usuario/compra";
     }
 }

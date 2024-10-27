@@ -19,6 +19,7 @@ public class Orden {
     @Temporal(TemporalType.DATE)
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date fechaCreacion;
+
     private double total;
 
     @ManyToOne

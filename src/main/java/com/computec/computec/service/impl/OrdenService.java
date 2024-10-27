@@ -35,7 +35,8 @@ public class OrdenService implements IOrdenService {
 
     @Override
     public List<Orden> findByUsuario(Usuario usuario) {
-        return List.of();
+
+        return ordenDao.findByUsuario(usuario);
     }
 
     // 0000010
