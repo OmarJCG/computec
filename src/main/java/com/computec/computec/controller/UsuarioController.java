@@ -156,6 +156,7 @@ public class UsuarioController {
 
         //session
         model.addAttribute("usuario", session.getAttribute("usuario"));
+        model.addAttribute("id", id);
         return "usuario/detallecompra";
     }
 }
