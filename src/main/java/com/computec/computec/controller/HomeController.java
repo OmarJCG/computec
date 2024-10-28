@@ -1,9 +1,9 @@
 package com.computec.computec.controller;
 
 import com.computec.computec.model.*;
-import com.computec.computec.service.IDetalleOrdenService;
+import com.computec.computec.service.IDetalleCompraService;
 import com.computec.computec.service.IDetalleProductoService;
-import com.computec.computec.service.IOrdenService;
+import com.computec.computec.service.ICompraService;
 import com.computec.computec.service.IProductoService;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
@@ -35,26 +35,26 @@ public class HomeController {
     private IDetalleProductoService detalleProductoService;
 
     @Autowired
-    private IOrdenService ordenService;
+    private ICompraService ordenService;
 
     @Autowired
-    private IDetalleOrdenService detalleOrdenService;
+    private IDetalleCompraService detalleOrdenService;
 
 
     //Para almacenar detalle de la orden
-    List<DetalleOrden> detalles = new ArrayList<DetalleOrden>();
+    List<DetalleCompra> detalles = new ArrayList<DetalleCompra>();
 
     //datos de la orden
-    Orden orden = new Orden();
+    Compra orden = new Compra();
 
     DecimalFormat df = new DecimalFormat("#.00");
 
 
-    public void setDetalles(List<DetalleOrden> detalles) {
+    public void setDetalles(List<DetalleCompra> detalles) {
         this.detalles = detalles;
     }
 
-    public void setOrden(Orden orden) {
+    public void setOrden(Compra orden) {
         this.orden = orden;
     }
 
@@ -184,7 +184,7 @@ public class HomeController {
 
         model.addAttribute("usuario", session.getAttribute("usuario"));
 
-        DetalleOrden detalleOrden  = new DetalleOrden();
+        DetalleCompra detalleOrden  = new DetalleCompra();
         Producto producto = new Producto();
         double sumaTotal = 0;
 
@@ -196,8 +196,20 @@ public class HomeController {
         producto = optionalProducto.get();
 
 
+        DetalleCompra dcopia = new DetalleCompra();
+        for (DetalleCompra d : detalles){
+            if(d.getProducto().getId().equals(producto.getId())){
+                dcopia = d;
+            }
+        }
+        
+        detalles.remove(dcopia);
+
+
         double precio = Double.valueOf(df.format(producto.getPrecio()));
         double total = Double.valueOf(df.format(producto.getPrecio()*cantidad));
+
+        String nombre = producto.getMarca() + " "+ producto.getModelo();
 
         detalleOrden.setNombre(producto.getMarca() + " "+ producto.getModelo());
         detalleOrden.setCantidad(cantidad);
@@ -206,13 +218,9 @@ public class HomeController {
         detalleOrden.setProducto(producto);
         detalleOrden.setImg(producto.getImg());
 
-        //validar que le producto no se añada 2 veces
-        Integer idProducto=producto.getId();
-        boolean ingresado=detalles.stream().anyMatch(p -> p.getProducto().getId()==idProducto);
 
-        if (!ingresado) {
-            detalles.add(detalleOrden);
-        }
+
+        detalles.add(detalleOrden);
 
 
         sumaTotal = detalles.stream().mapToDouble(dt -> dt.getTotal()).sum();
@@ -237,9 +245,9 @@ public class HomeController {
         model.addAttribute("usuario", session.getAttribute("usuario"));
 
         // lista nueva de prodcutos
-        List<DetalleOrden> ordenesNueva = new ArrayList<DetalleOrden>();
+        List<DetalleCompra> ordenesNueva = new ArrayList<DetalleCompra>();
 
-        for (DetalleOrden detalleOrden : detalles) {
+        for (DetalleCompra detalleOrden : detalles) {
             if (detalleOrden.getProducto().getId() != id) {
                 ordenesNueva.add(detalleOrden);
             }
@@ -298,13 +306,13 @@ public class HomeController {
         ordenService.save(orden);
 
         //guardar detalles
-        for (DetalleOrden dt:detalles) {
+        for (DetalleCompra dt:detalles) {
             dt.setOrden(orden);
             detalleOrdenService.save(dt);
         }
 
         ///limpiar lista y orden
-        orden = new Orden();
+        orden = new Compra();
         detalles.clear();
 
         return "redirect:/";

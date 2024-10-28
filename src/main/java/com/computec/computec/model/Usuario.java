@@ -33,7 +33,7 @@ public class Usuario {
 
 
     @OneToMany(mappedBy = "usuario")
-    private List<Orden> ordenes;
+    private List<Compra> ordenes;
 
 
     public Usuario() {
@@ -160,11 +160,11 @@ public class Usuario {
     }
 
 
-    public List<Orden> getOrdenes() {
+    public List<Compra> getOrdenes() {
         return ordenes;
     }
 
-    public void setOrdenes(List<Orden> ordenes) {
+    public void setOrdenes(List<Compra> ordenes) {
         this.ordenes = ordenes;
     }
 

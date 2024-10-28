@@ -1,9 +1,9 @@
 package com.computec.computec.service.impl;
 
-import com.computec.computec.dao.IOrdenDao;
-import com.computec.computec.model.Orden;
+import com.computec.computec.dao.ICompraDao;
+import com.computec.computec.model.Compra;
 import com.computec.computec.model.Usuario;
-import com.computec.computec.service.IOrdenService;
+import com.computec.computec.service.ICompraService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,30 +12,30 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class OrdenService implements IOrdenService {
+public class CompraService implements ICompraService {
 
     @Autowired
-    private IOrdenDao ordenDao;
+    private ICompraDao ordenDao;
 
     @Override
-    public List<Orden> findAll() {
+    public List<Compra> findAll() {
         return ordenDao.findAll();
     }
 
     @Override
-    public Optional<Orden> findById(Integer id) {
+    public Optional<Compra> findById(Integer id) {
         return ordenDao.findById(id);
     }
 
     @Override
-    public Orden save(Orden orden) {
+    public Compra save(Compra orden) {
 
         return ordenDao.save(orden);
     }
 
 
     @Override
-    public List<Orden> findByUsuario(Usuario usuario) {
+    public List<Compra> findByUsuario(Usuario usuario) {
 
         return ordenDao.findByUsuario(usuario);
     }
@@ -46,7 +46,7 @@ public class OrdenService implements IOrdenService {
         int numero=0;
         String numeroConcatenado="";
 
-        List<Orden> ordenes = findAll();
+        List<Compra> ordenes = findAll();
 
         List<Integer> numeros= new ArrayList<Integer>();
 

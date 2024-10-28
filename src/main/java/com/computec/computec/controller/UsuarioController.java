@@ -1,12 +1,11 @@
 package com.computec.computec.controller;
 
 
-import com.computec.computec.dao.IOrdenDao;
 import com.computec.computec.model.Contra;
-import com.computec.computec.model.DetalleOrden;
-import com.computec.computec.model.Orden;
+import com.computec.computec.model.DetalleCompra;
+import com.computec.computec.model.Compra;
 import com.computec.computec.model.Usuario;
-import com.computec.computec.service.IOrdenService;
+import com.computec.computec.service.ICompraService;
 import com.computec.computec.service.IUsuarioService;
 import jakarta.servlet.http.HttpSession;
 import org.slf4j.Logger;
@@ -36,7 +35,7 @@ public class UsuarioController {
     private IUsuarioService usuarioService;
 
     @Autowired
-    private IOrdenService ordenService;
+    private ICompraService ordenService;
 
     @Autowired
     private HomeController homeController;
@@ -92,8 +91,8 @@ public class UsuarioController {
     @GetMapping("/cerrar")
     public String cerrarSesion( HttpSession session ) {
 
-        homeController.setDetalles(new ArrayList<DetalleOrden>());
-        homeController.setOrden(new Orden());
+        homeController.setDetalles(new ArrayList<DetalleCompra>());
+        homeController.setOrden(new Compra());
         session.removeAttribute("usuario");
 
 
@@ -139,7 +138,7 @@ public class UsuarioController {
 
         Usuario usuario= (Usuario) session.getAttribute("usuario");
 
-        List<Orden> ordenes= ordenService.findByUsuario(usuario);
+        List<Compra> ordenes= ordenService.findByUsuario(usuario);
         LOGGER.info("ordenes {}", ordenes);
 
         model.addAttribute("ordenes", ordenes);
@@ -150,7 +149,7 @@ public class UsuarioController {
     @GetMapping("/detalle/{id}")
     public String detalleCompra(@PathVariable Integer id, HttpSession session, Model model) {
         LOGGER.info("Id de la orden: {}", id);
-        Optional<Orden> orden=ordenService.findById(id);
+        Optional<Compra> orden=ordenService.findById(id);
 
         model.addAttribute("detalles", orden.get().getDetalle());
 

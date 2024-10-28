@@ -8,7 +8,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "orden")
-public class Orden {
+public class Compra {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,12 +26,12 @@ public class Orden {
     private Usuario usuario;
 
     @OneToMany(mappedBy = "orden")
-    private List<DetalleOrden> detalle;
+    private List<DetalleCompra> detalle;
 
-    public Orden() {
+    public Compra() {
     }
 
-    public Orden(Integer id, String numero, Date fechaCreacion, double total) {
+    public Compra(Integer id, String numero, Date fechaCreacion, double total) {
         this.id = id;
         this.numero = numero;
         this.fechaCreacion = fechaCreacion;
@@ -78,11 +78,11 @@ public class Orden {
         this.usuario = usuario;
     }
 
-    public List<DetalleOrden> getDetalle() {
+    public List<DetalleCompra> getDetalle() {
         return detalle;
     }
 
-    public void setDetalle(List<DetalleOrden> detalle) {
+    public void setDetalle(List<DetalleCompra> detalle) {
         this.detalle = detalle;
     }
 
