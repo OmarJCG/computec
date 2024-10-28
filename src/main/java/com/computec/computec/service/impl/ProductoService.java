@@ -19,7 +19,7 @@ public class ProductoService implements IProductoService {
     @Autowired
     private IProductoDao productoRepository;
 
-    private final String rutaDirectorioImagenes = System.getProperty("user.dir") + "/img/";
+    private final String rutaDirectorioImagenes = "images//";
 
     @Override
     public Producto save(Producto producto) {
@@ -54,17 +54,17 @@ public class ProductoService implements IProductoService {
 
         if (imagen != null && !imagen.isEmpty()) {
             // Generamos un nombre único para la imagen usando la marca del producto y el timestamp
-            String nombreImagen = producto.getMarca() + "_" + System.currentTimeMillis() + ".jpg";
+            String nombreImagen = producto.getCategoria() + "_" + System.currentTimeMillis() + ".jpg";
             File archivoImagen = new File(rutaDirectorioImagenes + nombreImagen);
 
             // Guardamos la imagen en el directorio especificado
             FileUtils.copyInputStreamToFile(imagen.getInputStream(), archivoImagen);
 
             // Actualizamos la ruta de la imagen en el producto
-            producto.setImg(archivoImagen.getAbsolutePath());
+            producto.setImg(nombreImagen);
         } else {
             // Si no hay imagen, asignamos la ruta de la imagen predeterminada
-            producto.setImg(rutaDirectorioImagenes + "default.jpg");
+            producto.setImg("default.jpg");
         }
 
         return productoRepository.save(producto);
@@ -76,7 +76,7 @@ public class ProductoService implements IProductoService {
 
         if (productoOpt.isPresent()) {
             Producto producto = productoOpt.get();
-            String rutaImagen = producto.getImg();
+            String rutaImagen = rutaDirectorioImagenes + producto.getImg();
 
             // Verificamos que la ruta de la imagen no sea la de la imagen predeterminada antes de eliminar
             if (rutaImagen != null && !rutaImagen.endsWith("default.jpg")) {
@@ -106,7 +106,7 @@ public class ProductoService implements IProductoService {
 
         // Si hay una nueva imagen, eliminamos la anterior (si no es la predeterminada) y guardamos la nueva
         if (nuevaImagen != null && !nuevaImagen.isEmpty()) {
-            String rutaImagenAntigua = productoExistente.getImg();
+            String rutaImagenAntigua = rutaDirectorioImagenes + productoExistente.getImg();
 
             if (rutaImagenAntigua != null && !rutaImagenAntigua.endsWith("default.jpg")) {
                 File archivoImagenAntigua = new File(rutaImagenAntigua);
@@ -116,12 +116,12 @@ public class ProductoService implements IProductoService {
             }
 
             // Guardar la nueva imagen
-            String nombreImagenNueva = nuevosDatos.getMarca() + "_" + System.currentTimeMillis() + ".jpg";
+            String nombreImagenNueva = nuevosDatos.getCategoria() + "_" + System.currentTimeMillis() + ".jpg";
             File archivoImagenNueva = new File(rutaDirectorioImagenes + nombreImagenNueva);
             FileUtils.copyInputStreamToFile(nuevaImagen.getInputStream(), archivoImagenNueva);
 
             // Actualizar la ruta de la imagen en el producto
-            productoExistente.setImg(archivoImagenNueva.getAbsolutePath());
+            productoExistente.setImg(nombreImagenNueva);
         }
 
         // Actualizar otros campos del producto

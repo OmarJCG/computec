@@ -8,6 +8,9 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 public class ResourceWebConfiguration implements WebMvcConfigurer {
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        registry.addResourceHandler("/images/**").addResourceLocations("file:images/");
+
+        // Mapea las peticiones /images/** al directorio /img en el sistema de archivos
+        registry.addResourceHandler("/images/**")
+                .addResourceLocations("file:images/");
     }
 }
