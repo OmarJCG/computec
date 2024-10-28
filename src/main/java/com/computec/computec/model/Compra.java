@@ -3,6 +3,7 @@ package com.computec.computec.model;
 import jakarta.persistence.*;
 import org.springframework.format.annotation.DateTimeFormat;
 
+import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 
@@ -20,7 +21,8 @@ public class Compra {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date fechaCreacion;
 
-    private double total;
+    @Column(precision = 10, scale = 2)
+    private BigDecimal total;
 
     @ManyToOne
     private Usuario usuario;
@@ -31,7 +33,7 @@ public class Compra {
     public Compra() {
     }
 
-    public Compra(Integer id, String numero, Date fechaCreacion, double total) {
+    public Compra(Integer id, String numero, Date fechaCreacion, BigDecimal total) {
         this.id = id;
         this.numero = numero;
         this.fechaCreacion = fechaCreacion;
@@ -62,11 +64,11 @@ public class Compra {
         this.fechaCreacion = fechaCreacion;
     }
 
-    public double getTotal() {
+    public BigDecimal getTotal() {
         return total;
     }
 
-    public void setTotal(double total) {
+    public void setTotal(BigDecimal total) {
         this.total = total;
     }
 
@@ -88,11 +90,13 @@ public class Compra {
 
     @Override
     public String toString() {
-        return "Orden{" +
+        return "Compra{" +
                 "id=" + id +
                 ", numero='" + numero + '\'' +
                 ", fechaCreacion=" + fechaCreacion +
                 ", total=" + total +
+                ", usuario=" + usuario +
+                ", detalle=" + detalle +
                 '}';
     }
 }

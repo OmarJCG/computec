@@ -2,6 +2,8 @@ package com.computec.computec.model;
 
 import jakarta.persistence.*;
 
+import java.math.BigDecimal;
+
 @Entity
 @Table(name = "producto")
 public class Producto {
@@ -13,7 +15,9 @@ public class Producto {
     private String categoria;
     private String marca;
     private String modelo;
-    private double precio;
+
+    @Column(precision = 10, scale = 2)
+    private BigDecimal precio;
     private int stock;
     private String img;
 
@@ -23,7 +27,7 @@ public class Producto {
     public Producto() {
     }
 
-    public Producto(Integer id, String categoria, String marca, String modelo, double precio, int stock, String img) {
+    public Producto(Integer id, String categoria, String marca, String modelo, BigDecimal precio, int stock, String img) {
         this.id = id;
         this.categoria = categoria;
         this.marca = marca;
@@ -65,11 +69,11 @@ public class Producto {
         this.modelo = modelo;
     }
 
-    public double getPrecio() {
+    public BigDecimal getPrecio() {
         return precio;
     }
 
-    public void setPrecio(double precio) {
+    public void setPrecio(BigDecimal precio) {
         this.precio = precio;
     }
 
@@ -96,7 +100,6 @@ public class Producto {
     public void setDetalleProducto(DetalleProducto detalleProducto) {
         this.detalleProducto = detalleProducto;
     }
-
 
     @Override
     public String toString() {

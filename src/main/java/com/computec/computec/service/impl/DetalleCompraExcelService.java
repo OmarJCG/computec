@@ -42,8 +42,8 @@ public class DetalleCompraExcelService {
             row.createCell(0).setCellValue(detalle.getId());
             row.createCell(1).setCellValue(detalle.getNombre());
             row.createCell(2).setCellValue(detalle.getCantidad());
-            row.createCell(3).setCellValue(detalle.getPrecio());
-            row.createCell(4).setCellValue(detalle.getTotal());
+            row.createCell(3).setCellValue(detalle.getPrecio().doubleValue());
+            row.createCell(4).setCellValue(detalle.getTotal().doubleValue());
             row.createCell(5).setCellValue(detalle.getImg());
         }
 

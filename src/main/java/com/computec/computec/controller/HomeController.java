@@ -15,6 +15,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.math.BigDecimal;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -186,7 +187,7 @@ public class HomeController {
 
         DetalleCompra detalleOrden  = new DetalleCompra();
         Producto producto = new Producto();
-        double sumaTotal = 0;
+        BigDecimal sumaTotal;
 
         Optional<Producto> optionalProducto = productoService.get(id);
 
@@ -206,14 +207,14 @@ public class HomeController {
         detalles.remove(dcopia);
 
 
-        double precio = Double.valueOf(df.format(producto.getPrecio()));
-        double total = Double.valueOf(df.format(producto.getPrecio()*cantidad));
+        BigDecimal precio = producto.getPrecio();
+        BigDecimal total = producto.getPrecio().multiply(BigDecimal.valueOf(cantidad));
 
         String nombre = producto.getMarca() + " "+ producto.getModelo();
 
         detalleOrden.setNombre(producto.getMarca() + " "+ producto.getModelo());
         detalleOrden.setCantidad(cantidad);
-        detalleOrden.setPrecio( precio);
+        detalleOrden.setPrecio(precio);
         detalleOrden.setTotal(total);
         detalleOrden.setProducto(producto);
         detalleOrden.setImg(producto.getImg());
@@ -223,12 +224,15 @@ public class HomeController {
         detalles.add(detalleOrden);
 
 
-        sumaTotal = detalles.stream().mapToDouble(dt -> dt.getTotal()).sum();
+        sumaTotal =detalles.stream()
+                .map(DetalleCompra::getTotal) // Convierte cada `DetalleCompra` a su total (BigDecimal)
+                .reduce(BigDecimal.ZERO, BigDecimal::add); // Suma todos los totales
+
         int sumaCantidad = detalles.stream().mapToInt(dt -> dt.getCantidad()).sum();
 
 
 
-        orden.setTotal(Double.valueOf(df.format(sumaTotal)));
+        orden.setTotal(sumaTotal);
 
         model.addAttribute("p", producto);
         model.addAttribute("cart", detalles);
@@ -256,12 +260,15 @@ public class HomeController {
         // poner la nueva lista con los productos restantes
         detalles = ordenesNueva;
 
-        double sumaTotal = 0;
-        sumaTotal = detalles.stream().mapToDouble(dt -> dt.getTotal()).sum();
+        BigDecimal sumaTotal;
+
+        sumaTotal =detalles.stream()
+                .map(DetalleCompra::getTotal) // Convierte cada `DetalleCompra` a su total (BigDecimal)
+                .reduce(BigDecimal.ZERO, BigDecimal::add); // Suma todos los totales
 
         int sumaCantidad = detalles.stream().mapToInt(dt -> dt.getCantidad()).sum();
 
-        orden.setTotal(Double.valueOf(df.format(sumaTotal)));
+        orden.setTotal(sumaTotal);
         model.addAttribute("cart", detalles);
         model.addAttribute("orden", orden);
         model.addAttribute("sumacantidad", sumaCantidad);

@@ -2,6 +2,8 @@ package com.computec.computec.model;
 
 import jakarta.persistence.*;
 
+import java.math.BigDecimal;
+
 @Entity
 @Table(name = "detalleOrden")
 public class DetalleCompra {
@@ -11,8 +13,13 @@ public class DetalleCompra {
     private Integer id;
     private String nombre;
     private int cantidad;
-    private double precio;
-    private double total;
+
+    @Column(precision = 10, scale = 2)
+    private BigDecimal precio;
+
+    @Column(precision = 10, scale = 2)
+    private BigDecimal total;
+
     private String img;
 
     @ManyToOne
@@ -24,7 +31,7 @@ public class DetalleCompra {
     public DetalleCompra() {
     }
 
-    public DetalleCompra(Integer id, String nombre, int cantidad, double precio, double total, String img) {
+    public DetalleCompra(Integer id, String nombre, int cantidad, BigDecimal precio, BigDecimal total, String img) {
         this.id = id;
         this.nombre = nombre;
         this.cantidad = cantidad;
@@ -57,20 +64,28 @@ public class DetalleCompra {
         this.cantidad = cantidad;
     }
 
-    public double getPrecio() {
+    public BigDecimal getPrecio() {
         return precio;
     }
 
-    public void setPrecio(double precio) {
+    public void setPrecio(BigDecimal precio) {
         this.precio = precio;
     }
 
-    public double getTotal() {
+    public BigDecimal getTotal() {
         return total;
     }
 
-    public void setTotal(double total) {
+    public void setTotal(BigDecimal total) {
         this.total = total;
+    }
+
+    public String getImg() {
+        return img;
+    }
+
+    public void setImg(String img) {
+        this.img = img;
     }
 
     public Compra getOrden() {
@@ -89,22 +104,15 @@ public class DetalleCompra {
         this.producto = producto;
     }
 
-    public String getImg() {
-        return img;
-    }
-
-    public void setImg(String img) {
-        this.img = img;
-    }
-
     @Override
     public String toString() {
-        return "DetalleOrden{" +
+        return "DetalleCompra{" +
                 "id=" + id +
                 ", nombre='" + nombre + '\'' +
                 ", cantidad=" + cantidad +
                 ", precio=" + precio +
                 ", total=" + total +
+                ", img='" + img + '\'' +
                 '}';
     }
 }
