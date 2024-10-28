@@ -96,16 +96,12 @@ public class ProductoController {
                 "case", "case"
         );
 
-        if (producto.getId()==null) { // cuando se crea un producto
-            String nombreImagen= upload.saveImage(file);
-            producto.setImg(nombreImagen);
-        }
 
         DetalleProducto dp =  detalleProductoService.save(detalleProducto);
 
         producto.setDetalleProducto(dp);
 
-        productoService.save(producto);
+        productoService.guardarProductoConImagen(producto, file);
 
         String ruta = "redirect:/producto/show/"+productosPorCategoria.get(producto.getCategoria());
 
@@ -238,17 +234,7 @@ public class ProductoController {
                 "case", "case"
         );
 
-        if (file.isEmpty()) { // editamos el producto pero no cambiamos la imagem
-            producto.setImg(p.getImg());
 
-        }else {// cuando se edita tbn la imagen
-            //eliminar cuando no sea la imagen por defecto
-            if (!p.getImg().equals("default.jpg")) {
-                upload.deleteImage(p.getImg());
-            }
-            String nombreImagen= upload.saveImage(file);
-            producto.setImg(nombreImagen);
-        }
 
 
         producto.setCategoria(productosPorCategoria.get(producto.getCategoria()));
@@ -257,17 +243,17 @@ public class ProductoController {
 
         detalleProductoService.update(detalleProducto);
 
-        DetalleProducto dp = detalleProductoService.get(detalleProducto.getIdDetalleProducto()).get();
+        Optional<DetalleProducto> dp= detalleProductoService.get(detalleProducto.getIdDetalleProducto());
 
-        producto.setDetalleProducto(dp);
+        producto.setDetalleProducto(dp.get());
 
-        productoService.update(producto);
+        productoService.actualizarProductoConImagen(p.getId(), producto, file);
 
         return ruta;
     }
 
     @GetMapping("/delete/{id}")
-    public String delete(@PathVariable Integer id){
+    public String delete(@PathVariable Integer id) throws IOException {
 
         Optional<Producto>  producto = productoService.get(id);
 
@@ -289,14 +275,9 @@ public class ProductoController {
         Producto p= new Producto();
         p=productoService.get(id).get();
 
-        //eliminar cuando no sea la imagen por defecto
-        if (!p.getImg().equals("default.jpg")) {
-            upload.deleteImage(p.getImg());
-        }
-
         DetalleProducto detalleProducto = p.getDetalleProducto();
 
-        productoService.delete(id);
+        productoService.eliminarImagenProducto(id);
 
         detalleProductoService.delete(detalleProducto.getIdDetalleProducto());
 
